@@ -1,0 +1,10 @@
+apiVersion: v1
+appVersion: 1.0.0
+description: A Helm chart to label linkerd2-cni's namespace.
+engine: gotpl
+home: https://github.com/giantswarm/linkerd2-cni-app
+icon: https://s.giantswarm.io/app-icons/1/png/linkerd2-app-light.png
+name: linkerd2-cni-namespace-labeller
+sources:
+- https://github.com/giantswarm/linkerd2-cni-app
+version: 1.0.0

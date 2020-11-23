@@ -1,0 +1,37 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ .Values.name }}
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    {{- include "jobAnnotations" . | nindent 4 }}
+  labels:
+    {{- include "jobLabels" . | nindent 4 }}
+spec:
+  template:
+    spec:
+      tolerations:
+      - key: node-role.kubernetes.io/master
+        effect: NoSchedule
+      serviceAccountName: {{ .Values.name }}
+      securityContext:
+        runAsUser: {{ .Values.userID }}
+        runAsGroup: {{ .Values.groupID }}
+      containers:
+      - name: {{ .Values.name }}
+        image: "{{ .Values.global.image.registry }}/{{ .Values.image.name }}:{{ .Values.image.tag }}"
+        command:
+        - sh
+        - -c
+        - |
+          set -o errexit ; set -o xtrace ; set -o nounset
+
+          kubectl label --overwrite namespace {{ .Release.Namespace}} \
+              config.linkerd.io/admission-webhooks=disabled &&
+          kubectl label --overwrite namespace {{ .Release.Namespace }} \
+              {{ .Values.global.cniResourceLabel }}="true" &&
+          kubectl annotate namespace {{ .Release.Namespace }} \
+              {{ .Values.global.proxyInjectAnnotation }}={{ .Values.global.proxyInjectDisabled }}
+        resources: {{- toYaml .Values.resources | nindent 10 }}
+      restartPolicy: Never
+  backoffLimit: 4

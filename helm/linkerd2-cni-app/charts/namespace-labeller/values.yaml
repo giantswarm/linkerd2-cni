@@ -1,0 +1,14 @@
+name: linkerd2-cni-namespace-labeller 
+
+userID: 1000
+groupID: 1000
+
+image:
+  registry: quay.io
+  name: giantswarm/docker-kubectl
+  tag: latest
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 75Mi
