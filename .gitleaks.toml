@@ -1,0 +1,5 @@
+[[rules]]
+    description = "Ignore Istio commit hash"
+    [rules.allowlist]
+        regexes = ['''c63a509539b5ed165a6617548c31b686f13c2133''']
+        description = "ignore link with commit hash"
