@@ -176,7 +176,7 @@ spec:
         beta.kubernetes.io/os: linux
       tolerations:
       - key: node-role.kubernetes.io/master
-      effect: NoSchedule
+        effect: NoSchedule
       hostNetwork: true
       serviceAccountName: linkerd-cni
       {{- if .Values.priorityClassName }}
