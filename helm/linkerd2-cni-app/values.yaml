@@ -30,7 +30,7 @@ proxyInjectDisabled: &proxyInjectDisabled disabled
 # If the control plane service images are pulled from a
 # protected docker registry, define pull secrets as follows:
 #
-#imagePullSecrets:
+# imagePullSecrets:
 #    - name: my-private-docker-registry-login-secret
 #
 # The pull secrets are applied to the respective service accounts
@@ -47,4 +47,4 @@ global:
 
 image:
   name: linkerd2-cni-plugin
-  tag: stable-2.9.0
+  tag: stable-2.8.1
