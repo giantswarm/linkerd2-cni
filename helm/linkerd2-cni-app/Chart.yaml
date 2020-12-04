@@ -1,10 +1,15 @@
 apiVersion: v1
 appVersion: 0.0.1
-description: A helm chart containing the resources needed by the Linkerd CNI plugin.
+description: |
+  Linkerd is a *service mesh*, designed to give platform-wide observability,
+  reliability, and security without requiring configuration or code changes. The
+  Linkerd [CNI plugin](https://linkerd.io/2/features/cni/) takes care of setting
+  up your pod's network so  incoming and outgoing traffic is proxied through the
+  data plane.
 engine: gotpl
 home: https://github.com/giantswarm/linkerd2-cni-app
 icon: https://s.giantswarm.io/app-icons/1/png/linkerd2-app-light.png
-kubeVersion: '>=1.13.0-0'
+kubeVersion: ">=1.13.0-0"
 maintainers:
 - email: cncf-linkerd-dev@lists.cncf.io
   name: Linkerd authors
