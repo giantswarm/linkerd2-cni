@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Bump CNI image to `stable-2.9.1`. ([#7](https://github.com/giantswarm/linkerd2-cni-app/pull/7))
+
 ### Fixed
 
 - Correct indentation in pod spec. ([#6](https://github.com/giantswarm/linkerd2-cni-app/pull/6))
