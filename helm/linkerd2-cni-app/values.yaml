@@ -19,21 +19,21 @@ ignoreOutboundPorts: "25,443,587,3306,11211"
 # -- Annotation label for the proxy create. Do not edit.
 createdByAnnotation: linkerd.io/created-by
 # -- Docker image for the CNI plugin
-cniPluginImage:   "ghcr.io/linkerd/cni-plugin"
+cniPluginImage: "ghcr.io/linkerd/cni-plugin"
 # -- Tag for the CNI container Docker image
 cniPluginVersion: linkerdVersionValue
 # -- Log level for the CNI plugin
-logLevel:         info
+logLevel: info
 # -- Ports to redirect to proxy
-portsToRedirect:  ""
+portsToRedirect: ""
 # -- User id under which the proxy shall be ran
-proxyUID:         2102
+proxyUID: 2102
 # -- Directory on the host where the CNI plugin binaries reside
-destCNINetDir:    "/etc/cni/net.d"
+destCNINetDir: "/etc/cni/net.d"
 # -- Directory on the host where the CNI configuration will be placed
-destCNIBinDir:    "/opt/cni/bin"
+destCNIBinDir: "/opt/cni/bin"
 # -- Configures the CNI plugin to use the -w flag for the iptables command
-useWaitFlag:      false
+useWaitFlag: false
 # -- Kubernetes priorityClassName for the CNI plugin's Pods
 priorityClassName: ""
 
