@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Bump CNI image to `stable-2.9.1`. ([#7](https://github.com/giantswarm/linkerd2-cni-app/pull/7))
+- Use Giant Swarm image repository. ([#13](https://github.com/giantswarm/linkerd2-cni-app/pull/13))
 
 ### Fixed
 
