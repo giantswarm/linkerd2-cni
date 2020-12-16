@@ -62,5 +62,5 @@ global:
     registry: quay.io
 
 image:
-  name: linkerd2-cni-plugin
+  repo: giantswarm/linkerd2-cni-plugin
   tag: stable-2.9.1

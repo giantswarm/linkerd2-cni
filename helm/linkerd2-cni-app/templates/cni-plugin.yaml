@@ -188,7 +188,7 @@ spec:
       # script copies the files into place and then sleeps so
       # that Kubernetes doesn't keep trying to restart it.
       - name: install-cni
-        image: {{ .Values.global.image.registry }}/{{ .Values.image.name }}:{{ .Values.image.tag }}
+        image: "{{ .Values.global.image.registry }}/{{ .Values.image.repo }}:{{ .Values.image.tag }}"
         env:
         - name: DEST_CNI_NET_DIR
           valueFrom:
