@@ -11,9 +11,9 @@ ignoreInboundPorts: ""
 # -- Default set of outbound ports to skip via itpables
 ignoreOutboundPorts: ""
 # -- Docker image for the CNI plugin
-cniPluginImage: "cr.l5d.io/linkerd/cni-plugin"
+cniPluginImage: "quay.io/giantswarm/linkerd2-cni-plugin"
 # -- Tag for the CNI container Docker image
-cniPluginVersion: linkerdVersionValue
+cniPluginVersion: "stable-2.10.2"
 # -- Log level for the CNI plugin
 logLevel: info
 # -- Ports to redirect to proxy
