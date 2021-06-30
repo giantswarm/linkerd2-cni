@@ -11,35 +11,35 @@ ignoreInboundPorts: ""
 # -- Default set of outbound ports to skip via itpables
 ignoreOutboundPorts: ""
 # -- Docker image for the CNI plugin
-cniPluginImage:   "cr.l5d.io/linkerd/cni-plugin"
+cniPluginImage: "cr.l5d.io/linkerd/cni-plugin"
 # -- Tag for the CNI container Docker image
 cniPluginVersion: linkerdVersionValue
 # -- Log level for the CNI plugin
-logLevel:         info
+logLevel: info
 # -- Ports to redirect to proxy
-portsToRedirect:  ""
+portsToRedirect: ""
 # -- User id under which the proxy shall be ran
-proxyUID:         2102
+proxyUID: 2102
 # -- Directory on the host where the CNI plugin binaries reside
-destCNINetDir:    "/etc/cni/net.d"
+destCNINetDir: "/etc/cni/net.d"
 # -- Directory on the host where the CNI configuration will be placed
-destCNIBinDir:    "/opt/cni/bin"
+destCNIBinDir: "/opt/cni/bin"
 # -- Configures the CNI plugin to use the -w flag for the iptables command
-useWaitFlag:      false
+useWaitFlag: false
 # -- Kubernetes priorityClassName for the CNI plugin's Pods
 priorityClassName: ""
 
 # -|- Tolerations section, See the
 # [K8S documentation](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/)
 # for more information
-#tolerations:
+# tolerations:
 
 #
 ## For Private docker registries, authentication is needed.
 # If the control plane service images are pulled from a
 # protected docker registry, define pull secrets as follows:
 #
-#imagePullSecrets:
+# imagePullSecrets:
 #    - name: my-private-docker-registry-login-secret
 #
 # The pull secrets are applied to the respective service accounts
