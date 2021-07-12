@@ -3,6 +3,7 @@ checks:
   exclude:
   - "host-network"
   - "no-liveness-probe"
+  - "no-read-only-root-fs"
   - "no-readiness-probe"
   - "required-annotation-email"
   - "required-label-owner"
