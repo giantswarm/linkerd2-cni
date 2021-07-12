@@ -1,6 +1,8 @@
 checks:
   addAllBuiltIn: true
   exclude:
+  - "host-network"
+  - "no-liveness-probe"
   - "no-readiness-probe"
   - "required-annotation-email"
   - "required-label-owner"
