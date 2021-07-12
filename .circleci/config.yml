@@ -6,6 +6,7 @@ workflows:
   package-and-push-chart-on-tag:
     jobs:
       - architect/push-to-app-catalog:
+          context: "architect"
           executor: "app-build-suite"
           name: "package and push linkerd2-cni-app chart"
           app_catalog: "giantswarm-catalog"
