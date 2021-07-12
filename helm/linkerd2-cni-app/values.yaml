@@ -45,3 +45,11 @@ priorityClassName: ""
 # The pull secrets are applied to the respective service accounts
 # which will further orchestrate the deployments.
 imagePullSecrets:
+
+resources:
+  requests:
+    memory: "64Mi"
+    cpu: "50m"
+  limits:
+    memory: "128Mi"
+    cpu: "500m"

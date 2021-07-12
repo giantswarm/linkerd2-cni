@@ -242,6 +242,10 @@ spec:
         - mountPath: /host{{.Values.destCNINetDir}}
           name: cni-net-dir
         {{- end }}
+        securityContext:
+          readOnlyRootFilesystem: true
+        resources:
+          {{- toYaml .Values.resources | nindent 10 }}
       volumes:
       {{- if ne .Values.destCNIBinDir .Values.destCNINetDir }}
       - name: cni-bin-dir

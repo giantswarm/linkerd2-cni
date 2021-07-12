@@ -1,7 +1,8 @@
 checks:
   addAllBuiltIn: true
   exclude:
-  - "unset-cpu-requirements"
-  - "unset-memory-requirements"
+  - "no-readiness-probe"
+  - "required-annotation-email"
+  - "required-label-owner"
   - "run-as-non-root"
-  - "no-read-only-root-fs"
+  - "writable-host-mount"
