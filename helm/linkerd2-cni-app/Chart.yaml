@@ -20,6 +20,6 @@ name: linkerd2-cni-app
 sources:
 - https://github.com/linkerd/linkerd2
 - https://github.com/giantswarm/linkerd2-cni-app
-version: 0.3.1-beta-fc0798077fdec63274b019706e9c08c861b82d98
+version: 0.4.0
 restrictions:
   clusterSingleton: true
