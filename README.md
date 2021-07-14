@@ -7,13 +7,39 @@ Here we define the Linkerd2 CNI chart with its templates and default configurati
 
 ## Installation
 
-The target namespace (by default `linkerd-cni`) should have the following
-annotations (use App CR's
+The target namespace should have the following annotations (use App CR's
 [namespaceConfig](https://docs.giantswarm.io/app-platform/namespace-configuration/#configuring-labels--annotations) to deliver them):
 
 * `config.linkerd.io/admission-webhooks=disabled`
 * `linkerd.io/cni-resource="true"`
 * `linkerd.io/inject=disabled`
+
+### Example AppCR
+
+```
+apiVersion: application.giantswarm.io/v1alpha1
+kind: App
+metadata:
+  name: linkerd2-cni-app
+  namespace: by7t2
+spec:
+  catalog: giantswarm-test
+  kubeConfig:
+    inCluster: false
+  name: linkerd2-cni-app
+  namespace: linkerd2-cni-app
+  namespaceConfig:
+    annotations:
+      linkerd.io/inject: disabled
+    labels:
+      linkerd.io/cni-resource: "true"
+      config.linkerd.io/admission-webhooks: disabled
+  version: 0.4.0
+```
+
+## Usage with `linkerd` cli
+
+You can use the `linkerd` cli as usual, just don't forget to specify the cni plugins namespace with `--cni-namespace` flag.
 
 ## Maintainer info
 
