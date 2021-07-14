@@ -11,7 +11,7 @@ ignoreInboundPorts: ""
 # -- Default set of outbound ports to skip via itpables
 ignoreOutboundPorts: ""
 # -- Docker image for the CNI plugin
-cniPluginImage: "quay.io/giantswarm/linkerd2-cni-plugin"
+cniPluginImage: "giantswarm/linkerd2-cni-plugin"
 # -- Tag for the CNI container Docker image
 cniPluginVersion: "stable-2.10.2"
 # -- Log level for the CNI plugin
@@ -53,3 +53,7 @@ resources:
   limits:
     memory: "128Mi"
     cpu: "500m"
+
+## Required for interchangability of image registry used for China
+image:
+  registry: quay.io
