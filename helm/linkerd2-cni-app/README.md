@@ -22,21 +22,25 @@ Kubernetes: `>=1.16.0-0`
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| cniPluginImage | string | `"cr.l5d.io/linkerd/cni-plugin"` | Docker image for the CNI plugin |
-| cniPluginVersion | string | `"linkerdVersionValue"` | Tag for the CNI container Docker image |
+| cniPluginImage | string | `"quay.io/giantswarm/linkerd2-cni-plugin"` | Docker image for the CNI plugin |
+| cniPluginVersion | string | `"stable-2.10.2"` | Tag for the CNI container Docker image |
 | destCNIBinDir | string | `"/opt/cni/bin"` | Directory on the host where the CNI configuration will be placed |
 | destCNINetDir | string | `"/etc/cni/net.d"` | Directory on the host where the CNI plugin binaries reside |
 | ignoreInboundPorts | string | `""` | Default set of inbound ports to skip via itpables |
 | ignoreOutboundPorts | string | `""` | Default set of outbound ports to skip via itpables |
 | imagePullSecrets | string | `nil` |  |
 | inboundProxyPort | int | `4143` | Inbound port for the proxy container |
-| installNamespace | bool | `true` | Whether to create the CNI plugin plane namespace or not |
+| installNamespace | bool | `false` | Whether to create the CNI plugin plane namespace or not |
 | logLevel | string | `"info"` | Log level for the CNI plugin |
 | namespace | string | `"linkerd-cni"` | CNI plugin plane namespace |
 | outboundProxyPort | int | `4140` | Outbound port for the proxy container |
 | portsToRedirect | string | `""` | Ports to redirect to proxy |
 | priorityClassName | string | `""` | Kubernetes priorityClassName for the CNI plugin's Pods |
 | proxyUID | int | `2102` | User id under which the proxy shall be ran |
+| resources.limits.cpu | string | `"500m"` |  |
+| resources.limits.memory | string | `"128Mi"` |  |
+| resources.requests.cpu | string | `"50m"` |  |
+| resources.requests.memory | string | `"64Mi"` |  |
 | useWaitFlag | bool | `false` | Configures the CNI plugin to use the -w flag for the iptables command |
 
 ----------------------------------------------
