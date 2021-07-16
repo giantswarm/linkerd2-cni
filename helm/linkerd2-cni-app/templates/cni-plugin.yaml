@@ -27,6 +27,7 @@ metadata:
   labels:
     linkerd.io/cni-resource: "true"
     config.linkerd.io/admission-webhooks: disabled
+    giantswarm.io/service-type: "managed"
 ---
 {{ end -}}
 apiVersion: policy/v1beta1
@@ -35,6 +36,7 @@ metadata:
   name: linkerd-{{ include "linkerd-cni.namespace-name" . }}-cni
   labels:
     linkerd.io/cni-resource: "true"
+    giantswarm.io/service-type: "managed"
 spec:
   allowPrivilegeEscalation: false
   fsGroup:
@@ -57,6 +59,7 @@ metadata:
   namespace: {{ include "linkerd-cni.namespace-name" . }}
   labels:
     linkerd.io/cni-resource: "true"
+    giantswarm.io/service-type: "managed"
 {{- if .Values.imagePullSecrets }}
 imagePullSecrets:
 {{ toYaml .Values.imagePullSecrets | indent 2 }}
@@ -69,6 +72,7 @@ metadata:
   namespace: {{ include "linkerd-cni.namespace-name" . }}
   labels:
     linkerd.io/cni-resource: "true"
+    giantswarm.io/service-type: "managed"
 rules:
 - apiGroups: ['extensions', 'policy']
   resources: ['podsecuritypolicies']
@@ -83,6 +87,7 @@ metadata:
   namespace: {{ include "linkerd-cni.namespace-name" . }}
   labels:
     linkerd.io/cni-resource: "true"
+    giantswarm.io/service-type: "managed"
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -98,6 +103,7 @@ metadata:
   name: linkerd-cni
   labels:
     linkerd.io/cni-resource: "true"
+    giantswarm.io/service-type: "managed"
 rules:
 - apiGroups: [""]
   resources: ["pods", "nodes", "namespaces"]
@@ -109,6 +115,7 @@ metadata:
   name: linkerd-cni
   labels:
     linkerd.io/cni-resource: "true"
+    giantswarm.io/service-type: "managed"
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -125,6 +132,7 @@ metadata:
   namespace: {{ include "linkerd-cni.namespace-name" . }}
   labels:
     linkerd.io/cni-resource: "true"
+    giantswarm.io/service-type: "managed"
 data:
   dest_cni_net_dir: "{{.Values.destCNINetDir}}"
   dest_cni_bin_dir: "{{.Values.destCNIBinDir}}"
@@ -171,6 +179,8 @@ metadata:
   labels:
     k8s-app: linkerd-cni
     linkerd.io/cni-resource: "true"
+    giantswarm.io/monitoring_basic_sli: "true"
+    giantswarm.io/service-type: "managed"
   annotations:
     {{ include "partials.annotations.created-by" . }}
 spec:
@@ -185,6 +195,7 @@ spec:
     metadata:
       labels:
         k8s-app: linkerd-cni
+        giantswarm.io/service-type: "managed"
       annotations:
         {{ include "partials.annotations.created-by" . }}
     spec:
