@@ -7,7 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Align with and upgrade to upstream `stable-2.10.2`. ([#28](https://github.com/giantswarm/linkerd2-cni-app/pull/28))
+- First release published to the `giantswarm` catalog.
+
 ## [0.2.1] - 2020-12-16
+
+### Changed
+
+- Upddate missed `appVersion` in Chart.yaml. ([#16](https://github.com/giantswarm/linkerd2-cni-app/pull/16))
 
 ## [0.2.0] - 2020-12-16
 

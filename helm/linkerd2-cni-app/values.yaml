@@ -1,27 +1,19 @@
 # -- CNI plugin plane namespace
-namespace: linkerd-cni
+namespace: linkerd2-cni-app
 # -- Whether to create the CNI plugin plane namespace or not
-installNamespace: true
-# -- CNI resource annotation. Do not edit
-cniResourceLabel: &cniResourceLabel linkerd.io/cni-resource
+installNamespace: false
 # -- Inbound port for the proxy container
 inboundProxyPort: 4143
 # -- Outbound port for the proxy container
 outboundProxyPort: 4140
-# -- Inbound ports the proxy should ignore
-# - SMTP (25,587) server-first
-# - HTTPS (443) opaque TLS
-# - MYSQL (3306) server-first
-# - Memcached (11211) clients do not issue any preamble, which breaks detection
-ignoreInboundPorts: "25,443,587,3306,11211"
-# -- Outbound ports the proxy should ignore
-ignoreOutboundPorts: "25,443,587,3306,11211"
-# -- Annotation label for the proxy create. Do not edit.
-createdByAnnotation: linkerd.io/created-by
+# -- Default set of inbound ports to skip via itpables
+ignoreInboundPorts: ""
+# -- Default set of outbound ports to skip via itpables
+ignoreOutboundPorts: ""
 # -- Docker image for the CNI plugin
-cniPluginImage: "ghcr.io/linkerd/cni-plugin"
+cniPluginImage: "giantswarm/linkerd2-cni-plugin"
 # -- Tag for the CNI container Docker image
-cniPluginVersion: linkerdVersionValue
+cniPluginVersion: "stable-2.10.2"
 # -- Log level for the CNI plugin
 logLevel: info
 # -- Ports to redirect to proxy
@@ -37,9 +29,10 @@ useWaitFlag: false
 # -- Kubernetes priorityClassName for the CNI plugin's Pods
 priorityClassName: ""
 
-# namespace annotation and labels - do not edit
-proxyInjectAnnotation: &proxyInjectAnnotation linkerd.io/inject
-proxyInjectDisabled: &proxyInjectDisabled disabled
+# -|- Tolerations section, See the
+# [K8S documentation](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/)
+# for more information
+# tolerations:
 
 #
 ## For Private docker registries, authentication is needed.
@@ -51,16 +44,16 @@ proxyInjectDisabled: &proxyInjectDisabled disabled
 #
 # The pull secrets are applied to the respective service accounts
 # which will further orchestrate the deployments.
-
 imagePullSecrets:
 
-global:
-  cniResourceLabel: *cniResourceLabel
-  proxyInjectAnnotation: *proxyInjectAnnotation
-  proxyInjectDisabled: *proxyInjectDisabled
-  image:
-    registry: quay.io
+resources:
+  requests:
+    memory: "64Mi"
+    cpu: "50m"
+  limits:
+    memory: "128Mi"
+    cpu: "500m"
 
+## Required for interchangability of image registry used for China
 image:
-  repo: giantswarm/linkerd2-cni-plugin
-  tag: stable-2.9.1
+  registry: quay.io
