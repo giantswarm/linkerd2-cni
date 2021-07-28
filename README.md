@@ -13,8 +13,12 @@ The target namespace should have the following annotations and labels (use App C
 * labels
   * `config.linkerd.io/admission-webhooks=disabled`
   * `linkerd.io/cni-resource="true"`
-* annotation 
+* annotation
   * `linkerd.io/inject=disabled`
+
+Please note, the only supported namespace name is `linkerd-cni`.
+
+If you're installing using the Web UI, you'll need to add the required labels and annotation to the `linkerd-cni` namespace by hand.
 
 ### Example AppCR
 
@@ -25,11 +29,11 @@ metadata:
   name: linkerd2-cni-app
   namespace: by7t2
 spec:
-  catalog: giantswarm-test
+  catalog: giantswarm
   kubeConfig:
     inCluster: false
   name: linkerd2-cni-app
-  namespace: linkerd2-cni-app
+  namespace: linkerd-cni
   namespaceConfig:
     annotations:
       linkerd.io/inject: disabled
