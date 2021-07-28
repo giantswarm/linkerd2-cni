@@ -29,7 +29,7 @@
             }
         },
         "imagePullSecrets": {
-            "type": "array"
+            "type": ["null","array"]
         },
         "inboundProxyPort": {
             "type": "integer"
