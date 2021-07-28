@@ -16,7 +16,7 @@ from pytest_helm_charts.giantswarm_app_platform.custom_resources import AppCR
 logger = logging.getLogger(__name__)
 
 app_name = "linkerd2-cni-app"
-namespace_name = "linkerd2-cni-app"
+namespace_name = "linkerd-cni"
 catalog_name = "chartmuseum"
 
 timeout: int = 360

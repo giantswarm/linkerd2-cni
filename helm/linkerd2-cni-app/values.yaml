@@ -1,5 +1,5 @@
 # -- CNI plugin plane namespace
-namespace: linkerd2-cni-app
+namespace: linkerd-cni
 # -- Whether to create the CNI plugin plane namespace or not
 installNamespace: false
 # -- Inbound port for the proxy container
