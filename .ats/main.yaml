@@ -1,0 +1,3 @@
+skip-steps: test_functional
+app-tests-skip-app-deploy: true
+smoke-tests-cluster-type: kind
