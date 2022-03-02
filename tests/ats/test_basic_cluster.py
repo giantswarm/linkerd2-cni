@@ -9,9 +9,9 @@ from typing import Dict
 
 import pykube
 import pytest
-from pytest_helm_charts.fixtures import Cluster
-from pytest_helm_charts.utils import wait_for_namespaced_objects_condition
-from pytest_helm_charts.giantswarm_app_platform.custom_resources import AppCR
+from pytest_helm_charts.clusters import Cluster
+from pytest_helm_charts.utils import wait_for_objects_condition
+from pytest_helm_charts.giantswarm_app_platform.app import AppCR
 
 logger = logging.getLogger(__name__)
 
@@ -95,7 +95,7 @@ def app_cr(kube_cluster, chart_version):
     app_obj = AppCR(kube_cluster.kube_client, app)
     app_obj.create()
     time.sleep(5)
-    apps = wait_for_namespaced_objects_condition(
+    apps = wait_for_objects_condition(
         kube_cluster.kube_client,
         AppCR,
         [app_name],
