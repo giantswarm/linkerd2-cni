@@ -27,14 +27,16 @@ metadata:
   labels:
     linkerd.io/cni-resource: "true"
     config.linkerd.io/admission-webhooks: disabled
+    giantswarm.io/service-type: "managed"
 ---
 {{ end -}}
 apiVersion: policy/v1beta1
 kind: PodSecurityPolicy
 metadata:
-  name: linkerd-{{.Values.namespace}}-cni
+  name: linkerd-{{ include "linkerd-cni.namespace-name" . }}-cni
   labels:
     linkerd.io/cni-resource: "true"
+    giantswarm.io/service-type: "managed"
 spec:
   allowPrivilegeEscalation: false
   fsGroup:
@@ -54,9 +56,10 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: linkerd-cni
-  namespace: {{.Values.namespace}}
+  namespace: {{ include "linkerd-cni.namespace-name" . }}
   labels:
     linkerd.io/cni-resource: "true"
+    giantswarm.io/service-type: "managed"
 {{- if .Values.imagePullSecrets }}
 imagePullSecrets:
 {{ toYaml .Values.imagePullSecrets | indent 2 }}
@@ -66,23 +69,25 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: linkerd-cni
-  namespace: {{.Values.namespace}}
+  namespace: {{ include "linkerd-cni.namespace-name" . }}
   labels:
     linkerd.io/cni-resource: "true"
+    giantswarm.io/service-type: "managed"
 rules:
 - apiGroups: ['extensions', 'policy']
   resources: ['podsecuritypolicies']
   resourceNames:
-  - linkerd-{{.Values.namespace}}-cni
+  - linkerd-{{ include "linkerd-cni.namespace-name" . }}-cni
   verbs: ['use']
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: linkerd-cni
-  namespace: {{.Values.namespace}}
+  namespace: {{ include "linkerd-cni.namespace-name" . }}
   labels:
     linkerd.io/cni-resource: "true"
+    giantswarm.io/service-type: "managed"
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -90,7 +95,7 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: linkerd-cni
-  namespace: {{.Values.namespace}}
+  namespace: {{ include "linkerd-cni.namespace-name" . }}
 ---
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
@@ -98,6 +103,7 @@ metadata:
   name: linkerd-cni
   labels:
     linkerd.io/cni-resource: "true"
+    giantswarm.io/service-type: "managed"
 rules:
 - apiGroups: [""]
   resources: ["pods", "nodes", "namespaces"]
@@ -109,6 +115,7 @@ metadata:
   name: linkerd-cni
   labels:
     linkerd.io/cni-resource: "true"
+    giantswarm.io/service-type: "managed"
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -116,15 +123,16 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: linkerd-cni
-  namespace: {{.Values.namespace}}
+  namespace: {{ include "linkerd-cni.namespace-name" . }}
 ---
 kind: ConfigMap
 apiVersion: v1
 metadata:
   name: linkerd-cni-config
-  namespace: {{.Values.namespace}}
+  namespace: {{ include "linkerd-cni.namespace-name" . }}
   labels:
     linkerd.io/cni-resource: "true"
+    giantswarm.io/service-type: "managed"
 data:
   dest_cni_net_dir: "{{.Values.destCNINetDir}}"
   dest_cni_bin_dir: "{{.Values.destCNIBinDir}}"
@@ -167,10 +175,12 @@ kind: DaemonSet
 apiVersion: apps/v1
 metadata:
   name: linkerd-cni
-  namespace: {{.Values.namespace}}
+  namespace: {{ include "linkerd-cni.namespace-name" . }}
   labels:
     k8s-app: linkerd-cni
     linkerd.io/cni-resource: "true"
+    giantswarm.io/monitoring_basic_sli: "true"
+    giantswarm.io/service-type: "managed"
   annotations:
     {{ include "partials.annotations.created-by" . }}
 spec:
@@ -185,6 +195,7 @@ spec:
     metadata:
       labels:
         k8s-app: linkerd-cni
+        giantswarm.io/service-type: "managed"
       annotations:
         {{ include "partials.annotations.created-by" . }}
     spec:
@@ -204,7 +215,7 @@ spec:
       # script copies the files into place and then sleeps so
       # that Kubernetes doesn't keep trying to restart it.
       - name: install-cni
-        image: {{.Values.cniPluginImage}}:{{.Values.cniPluginVersion}}
+        image: "{{ .Values.image.registry }}/{{ .Values.cniPluginImage }}:{{ .Values.cniPluginVersion }}"
         env:
         - name: DEST_CNI_NET_DIR
           valueFrom:
@@ -242,6 +253,8 @@ spec:
         - mountPath: /host{{.Values.destCNINetDir}}
           name: cni-net-dir
         {{- end }}
+        resources:
+          {{- toYaml .Values.resources | nindent 10 }}
       volumes:
       {{- if ne .Values.destCNIBinDir .Values.destCNINetDir }}
       - name: cni-bin-dir
