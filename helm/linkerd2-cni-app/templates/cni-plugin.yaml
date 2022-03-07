@@ -110,6 +110,7 @@ subjects:
 - kind: ServiceAccount
   name: linkerd-cni
   namespace: {{ include "linkerd-cni.namespace-name" . }}
+{{ end -}}
 ---
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
