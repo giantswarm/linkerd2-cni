@@ -1,5 +1,5 @@
 checks:
-  addAllBuiltIn: true
+  # addAllBuiltIn: true
   exclude:
   - "host-network"
   - "no-liveness-probe"
