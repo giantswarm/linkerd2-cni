@@ -9,7 +9,7 @@ description: |
 engine: gotpl
 home: https://github.com/giantswarm/linkerd2-cni-app
 icon: https://s.giantswarm.io/app-icons/1/png/linkerd2-app-light.png
-kubeVersion: ">=1.16.0-0"
+kubeVersion: ">=1.17.0-0"
 annotations:
   application.giantswarm.io/team: team-cabbage
 maintainers:

@@ -203,7 +203,7 @@ spec:
       {{- include "linkerd.tolerations" . | nindent 6 }}
       {{- end }}
       nodeSelector:
-        beta.kubernetes.io/os: linux
+        kubernetes.io/os: linux
       hostNetwork: true
       serviceAccountName: linkerd-cni
       {{- if .Values.priorityClassName }}
