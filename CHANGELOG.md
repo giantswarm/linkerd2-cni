@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Set team annotation in Chart.yaml for alert routing.
 
+### Changed
+
+- Align with and upgrade to upstream `stable-2.11.2`. ([#59](https://github.com/giantswarm/linkerd2-cni-app/pull/59))
+
 ## [0.4.0] - 2021-07-29
 
 ### Changed
