@@ -13,16 +13,16 @@ kubeVersion: ">=1.17.0-0"
 annotations:
   application.giantswarm.io/team: team-cabbage
 maintainers:
-- email: cncf-linkerd-dev@lists.cncf.io
-  name: Linkerd authors
-  url: https://linkerd.io/
-- name: Giant Swarm applications team
-  url: https://github.com/giantswarm/linkerd2-cni-app
+  - email: cncf-linkerd-dev@lists.cncf.io
+    name: Linkerd authors
+    url: https://linkerd.io/
+  - name: Giant Swarm applications team
+    url: https://github.com/giantswarm/linkerd2-cni-app
 name: linkerd2-cni-app
 sources:
-- https://github.com/linkerd/linkerd2
-- https://github.com/giantswarm/linkerd2-cni-app
-version: 0.7.0
+  - https://github.com/linkerd/linkerd2
+  - https://github.com/giantswarm/linkerd2-cni-app
+version: 0.7.2
 restrictions:
   clusterSingleton: true
   fixedNamespace: linkerd-cni
