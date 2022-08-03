@@ -28,6 +28,7 @@ metadata:
     linkerd.io/cni-resource: "true"
     config.linkerd.io/admission-webhooks: disabled
     giantswarm.io/service-type: "managed"
+    application.giantswarm.io/team: {{ index .Chart.Annotations "application.giantswarm.io/team" | quote }}
 ---
 {{ end -}}
 apiVersion: v1
@@ -38,6 +39,7 @@ metadata:
   labels:
     linkerd.io/cni-resource: "true"
     giantswarm.io/service-type: "managed"
+    application.giantswarm.io/team: {{ index .Chart.Annotations "application.giantswarm.io/team" | quote }}
 {{- if .Values.imagePullSecrets }}
 imagePullSecrets:
 {{ toYaml .Values.imagePullSecrets | indent 2 }}
@@ -51,6 +53,7 @@ metadata:
   labels:
     linkerd.io/cni-resource: "true"
     giantswarm.io/service-type: "managed"
+    application.giantswarm.io/team: {{ index .Chart.Annotations "application.giantswarm.io/team" | quote }}
 spec:
   allowPrivilegeEscalation: false
   fsGroup:
@@ -75,6 +78,7 @@ metadata:
   labels:
     linkerd.io/cni-resource: "true"
     giantswarm.io/service-type: "managed"
+    application.giantswarm.io/team: {{ index .Chart.Annotations "application.giantswarm.io/team" | quote }}
 rules:
 - apiGroups: ['extensions', 'policy']
   resources: ['podsecuritypolicies']
@@ -90,6 +94,7 @@ metadata:
   labels:
     linkerd.io/cni-resource: "true"
     giantswarm.io/service-type: "managed"
+    application.giantswarm.io/team: {{ index .Chart.Annotations "application.giantswarm.io/team" | quote }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -107,6 +112,7 @@ metadata:
   labels:
     linkerd.io/cni-resource: "true"
     giantswarm.io/service-type: "managed"
+    application.giantswarm.io/team: {{ index .Chart.Annotations "application.giantswarm.io/team" | quote }}
 rules:
 - apiGroups: [""]
   resources: ["pods", "nodes", "namespaces"]
@@ -119,6 +125,7 @@ metadata:
   labels:
     linkerd.io/cni-resource: "true"
     giantswarm.io/service-type: "managed"
+    application.giantswarm.io/team: {{ index .Chart.Annotations "application.giantswarm.io/team" | quote }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -136,6 +143,7 @@ metadata:
   labels:
     linkerd.io/cni-resource: "true"
     giantswarm.io/service-type: "managed"
+    application.giantswarm.io/team: {{ index .Chart.Annotations "application.giantswarm.io/team" | quote }}
 data:
   dest_cni_net_dir: "{{.Values.destCNINetDir}}"
   dest_cni_bin_dir: "{{.Values.destCNIBinDir}}"
@@ -181,6 +189,7 @@ metadata:
     linkerd.io/cni-resource: "true"
     giantswarm.io/monitoring_basic_sli: "true"
     giantswarm.io/service-type: "managed"
+    application.giantswarm.io/team: {{ index .Chart.Annotations "application.giantswarm.io/team" | quote }}
   annotations:
     {{ include "partials.annotations.created-by" . }}
 spec:
@@ -196,6 +205,7 @@ spec:
       labels:
         k8s-app: linkerd-cni
         giantswarm.io/service-type: "managed"
+        application.giantswarm.io/team: {{ index .Chart.Annotations "application.giantswarm.io/team" | quote }}
       annotations:
         {{ include "partials.annotations.created-by" . }}
     spec:
