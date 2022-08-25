@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+Skipping 0.7.3 to align with linkerd2-app version
+
+### Changed
+
+- Align with upstream version `stable-2.11.4`. [No changes](https://github.com/linkerd/linkerd2/blob/stable-2.11.4/CHANGES.md#stable-2114) of the cni-plugin actuallly.
+
 ## [0.7.2] - 2022-08-03
 
 Skipping 0.7.1 to re-align with linkerd2-app version
