@@ -17,29 +17,23 @@ limitations under the License.
 This file was inspired by
 1) https://github.com/istio/cni/blob/c63a509539b5ed165a6617548c31b686f13c2133/deployments/kubernetes/install/manifests/istio-cni.yaml
 */ -}}
-{{- if .Values.installNamespace -}}
+{{- if eq .Release.Service "CLI" -}}
 kind: Namespace
 apiVersion: v1
 metadata:
-  name: {{.Values.namespace}}
-  annotations:
-    linkerd.io/inject: disabled
+  name: {{.Release.Namespace}}
   labels:
     linkerd.io/cni-resource: "true"
     config.linkerd.io/admission-webhooks: disabled
-    giantswarm.io/service-type: "managed"
-    application.giantswarm.io/team: {{ index .Chart.Annotations "application.giantswarm.io/team" | quote }}
 ---
 {{ end -}}
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: linkerd-cni
-  namespace: {{ include "linkerd-cni.namespace-name" . }}
+  namespace: {{ .Release.Namespace }}
   labels:
     linkerd.io/cni-resource: "true"
-    giantswarm.io/service-type: "managed"
-    application.giantswarm.io/team: {{ index .Chart.Annotations "application.giantswarm.io/team" | quote }}
 {{- if .Values.imagePullSecrets }}
 imagePullSecrets:
 {{ toYaml .Values.imagePullSecrets | indent 2 }}
@@ -49,13 +43,13 @@ imagePullSecrets:
 apiVersion: policy/v1beta1
 kind: PodSecurityPolicy
 metadata:
-  name: linkerd-{{ include "linkerd-cni.namespace-name" . }}-cni
+  name: linkerd-{{.Release.Namespace}}-cni
   labels:
     linkerd.io/cni-resource: "true"
-    giantswarm.io/service-type: "managed"
-    application.giantswarm.io/team: {{ index .Chart.Annotations "application.giantswarm.io/team" | quote }}
 spec:
+  {{- if not .Values.privileged }}
   allowPrivilegeEscalation: false
+  {{- end }}
   fsGroup:
     rule: RunAsAny
   hostNetwork: true
@@ -74,27 +68,23 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: linkerd-cni
-  namespace: {{ include "linkerd-cni.namespace-name" . }}
+  namespace: {{ .Release.Namespace }}
   labels:
     linkerd.io/cni-resource: "true"
-    giantswarm.io/service-type: "managed"
-    application.giantswarm.io/team: {{ index .Chart.Annotations "application.giantswarm.io/team" | quote }}
 rules:
 - apiGroups: ['extensions', 'policy']
   resources: ['podsecuritypolicies']
   resourceNames:
-  - linkerd-{{ include "linkerd-cni.namespace-name" . }}-cni
+  - linkerd-{{.Release.Namespace}}-cni
   verbs: ['use']
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: linkerd-cni
-  namespace: {{ include "linkerd-cni.namespace-name" . }}
+  namespace: {{ .Release.Namespace }}
   labels:
     linkerd.io/cni-resource: "true"
-    giantswarm.io/service-type: "managed"
-    application.giantswarm.io/team: {{ index .Chart.Annotations "application.giantswarm.io/team" | quote }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -102,7 +92,7 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: linkerd-cni
-  namespace: {{ include "linkerd-cni.namespace-name" . }}
+  namespace: {{.Release.Namespace}}
 {{ end -}}
 ---
 kind: ClusterRole
@@ -111,8 +101,6 @@ metadata:
   name: linkerd-cni
   labels:
     linkerd.io/cni-resource: "true"
-    giantswarm.io/service-type: "managed"
-    application.giantswarm.io/team: {{ index .Chart.Annotations "application.giantswarm.io/team" | quote }}
 rules:
 - apiGroups: [""]
   resources: ["pods", "nodes", "namespaces"]
@@ -124,8 +112,6 @@ metadata:
   name: linkerd-cni
   labels:
     linkerd.io/cni-resource: "true"
-    giantswarm.io/service-type: "managed"
-    application.giantswarm.io/team: {{ index .Chart.Annotations "application.giantswarm.io/team" | quote }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -133,17 +119,15 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: linkerd-cni
-  namespace: {{ include "linkerd-cni.namespace-name" . }}
+  namespace: {{.Release.Namespace}}
 ---
 kind: ConfigMap
 apiVersion: v1
 metadata:
   name: linkerd-cni-config
-  namespace: {{ include "linkerd-cni.namespace-name" . }}
+  namespace: {{ .Release.Namespace }}
   labels:
     linkerd.io/cni-resource: "true"
-    giantswarm.io/service-type: "managed"
-    application.giantswarm.io/team: {{ index .Chart.Annotations "application.giantswarm.io/team" | quote }}
 data:
   dest_cni_net_dir: "{{.Values.destCNINetDir}}"
   dest_cni_bin_dir: "{{.Values.destCNIBinDir}}"
@@ -183,13 +167,10 @@ kind: DaemonSet
 apiVersion: apps/v1
 metadata:
   name: linkerd-cni
-  namespace: {{ include "linkerd-cni.namespace-name" . }}
+  namespace: {{ .Release.Namespace }}
   labels:
     k8s-app: linkerd-cni
     linkerd.io/cni-resource: "true"
-    giantswarm.io/monitoring_basic_sli: "true"
-    giantswarm.io/service-type: "managed"
-    application.giantswarm.io/team: {{ index .Chart.Annotations "application.giantswarm.io/team" | quote }}
   annotations:
     {{ include "partials.annotations.created-by" . }}
 spec:
@@ -204,16 +185,20 @@ spec:
     metadata:
       labels:
         k8s-app: linkerd-cni
-        giantswarm.io/service-type: "managed"
-        application.giantswarm.io/team: {{ index .Chart.Annotations "application.giantswarm.io/team" | quote }}
       annotations:
         {{ include "partials.annotations.created-by" . }}
+        linkerd.io/cni-resource: "true"
+        linkerd.io/inject: disabled
     spec:
       {{- if .Values.tolerations }}
       {{- include "linkerd.tolerations" . | nindent 6 }}
       {{- end }}
       nodeSelector:
         kubernetes.io/os: linux
+      {{- if .Values.nodeAffinity }}
+      affinity:
+      {{- include "linkerd.node-affinity" . | nindent 8 }}
+      {{- end }}
       hostNetwork: true
       serviceAccountName: linkerd-cni
       {{- if .Values.priorityClassName }}
@@ -229,7 +214,7 @@ spec:
       # script copies the files into place and then sleeps so
       # that Kubernetes doesn't keep trying to restart it.
       - name: install-cni
-        image: "{{ .Values.image.registry }}/{{ .Values.cniPluginImage }}:{{ .Values.cniPluginVersion }}"
+        image: {{.Values.cniPluginImage}}:{{.Values.cniPluginVersion}}
         env:
         - name: DEST_CNI_NET_DIR
           valueFrom:
@@ -256,7 +241,7 @@ spec:
               command:
               - /bin/sh
               - -c
-              - kill -15 1
+              - kill -15 1; sleep 15s
         volumeMounts:
         {{- if ne .Values.destCNIBinDir .Values.destCNINetDir }}
         - mountPath: /host{{.Values.destCNIBinDir}}
@@ -269,10 +254,9 @@ spec:
         {{- end }}
         - mountPath: /tmp
           name: linkerd-tmp-dir
-        resources:
-          {{- toYaml .Values.resources | nindent 10 }}
         securityContext:
           readOnlyRootFilesystem: true
+          privileged: {{.Values.privileged}}
       volumes:
       {{- if ne .Values.destCNIBinDir .Values.destCNINetDir }}
       - name: cni-bin-dir
