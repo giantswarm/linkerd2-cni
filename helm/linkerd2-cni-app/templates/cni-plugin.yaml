@@ -254,6 +254,8 @@ spec:
         {{- end }}
         - mountPath: /tmp
           name: linkerd-tmp-dir
+        resources:
+          {{- toYaml .Values.resources | nindent 10 }}
         securityContext:
           readOnlyRootFilesystem: true
           privileged: {{.Values.privileged}}
