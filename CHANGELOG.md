@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Move linkerd2-cni chart to be a subchart of linkerd2-cni-app chart.
+- Convert linkerd2-cni into a subchart of linkerd2-cni-app
 
 ## [0.7.4] - 2022-08-25
 
