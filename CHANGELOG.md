@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Move linkerd2-cni chart to be a subchart of linkerd2-cni-app chart.
+
 ## [0.7.4] - 2022-08-25
 
 Skipping 0.7.3 to align with linkerd2-app version
