@@ -2,101 +2,105 @@
     "$schema": "http://json-schema.org/schema#",
     "type": "object",
     "properties": {
-        "cniPluginImage": {
-            "type": "string"
-        },
-        "cniPluginVersion": {
-            "type": "string"
-        },
-        "destCNIBinDir": {
-            "type": "string"
-        },
-        "destCNINetDir": {
-            "type": "string"
-        },
-        "enablePSP": {
-            "type": "boolean"
-        },
-        "extraInitContainers": {
-            "type": "array"
-        },
-        "ignoreInboundPorts": {
-            "type": "string"
-        },
-        "ignoreOutboundPorts": {
-            "type": "string"
-        },
-        "image": {
+        "linkerd2-cni": {
             "type": "object",
             "properties": {
-                "registry": {
+                "cniPluginImage": {
                     "type": "string"
-                }
-            }
-        },
-        "imagePullSecrets": {
-            "type": ["null","array"]
-        },
-        "inboundProxyPort": {
-            "type": "integer"
-        },
-        "installNamespace": {
-            "type": "boolean"
-        },
-        "logLevel": {
-            "type": "string"
-        },
-        "namespace": {
-            "type": "string",
-            "enum": ["linkerd-cni"]
-        },
-        "outboundProxyPort": {
-            "type": "integer"
-        },
-        "portsToRedirect": {
-            "type": "string"
-        },
-        "priorityClassName": {
-            "type": "string"
-        },
-        "proxyAdminPort": {
-            "type": "integer"
-        },
-        "proxyControlPort": {
-            "type": "integer"
-        },
-        "proxyUID": {
-            "type": "integer"
-        },
-        "resources": {
-            "type": "object",
-            "properties": {
-                "limits": {
+                },
+                "cniPluginVersion": {
+                    "type": "string"
+                },
+                "destCNIBinDir": {
+                    "type": "string"
+                },
+                "destCNINetDir": {
+                    "type": "string"
+                },
+                "enablePSP": {
+                    "type": "boolean"
+                },
+                "extraInitContainers": {
+                    "type": "array"
+                },
+                "ignoreInboundPorts": {
+                    "type": "string"
+                },
+                "ignoreOutboundPorts": {
+                    "type": "string"
+                },
+                "image": {
                     "type": "object",
                     "properties": {
-                        "cpu": {
-                            "type": "string"
-                        },
-                        "memory": {
+                        "registry": {
                             "type": "string"
                         }
                     }
                 },
-                "requests": {
+                "imagePullSecrets": {
+                    "type": "null"
+                },
+                "inboundProxyPort": {
+                    "type": "integer"
+                },
+                "installNamespace": {
+                    "type": "boolean"
+                },
+                "logLevel": {
+                    "type": "string"
+                },
+                "namespace": {
+                    "type": "string"
+                },
+                "outboundProxyPort": {
+                    "type": "integer"
+                },
+                "portsToRedirect": {
+                    "type": "string"
+                },
+                "priorityClassName": {
+                    "type": "string"
+                },
+                "proxyAdminPort": {
+                    "type": "integer"
+                },
+                "proxyControlPort": {
+                    "type": "integer"
+                },
+                "proxyUID": {
+                    "type": "integer"
+                },
+                "resources": {
                     "type": "object",
                     "properties": {
-                        "cpu": {
-                            "type": "string"
+                        "limits": {
+                            "type": "object",
+                            "properties": {
+                                "cpu": {
+                                    "type": "string"
+                                },
+                                "memory": {
+                                    "type": "string"
+                                }
+                            }
                         },
-                        "memory": {
-                            "type": "string"
+                        "requests": {
+                            "type": "object",
+                            "properties": {
+                                "cpu": {
+                                    "type": "string"
+                                },
+                                "memory": {
+                                    "type": "string"
+                                }
+                            }
                         }
                     }
+                },
+                "useWaitFlag": {
+                    "type": "boolean"
                 }
             }
-        },
-        "useWaitFlag": {
-            "type": "boolean"
         }
     }
 }

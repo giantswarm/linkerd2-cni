@@ -52,7 +52,13 @@ You can use the `linkerd` cli as usual, just don't forget to specify the cni plu
 This chart is maintained using the git subtree method from
 <https://github.com/giantswarm/linkerd2-upstream>.
 Pay attention that in order to sync the chart, you need to synchronize two
-directories `helm/linkerd2-cni-app` and `helm/partials`.
+directories `helm/linkerd2-cni-app/charts/linkerd2-cni` and `helm/linkerd2-cni-app/charts/partials`.
+
+## Breaking changes.
+
+### Version 0.8 and above
+
+- Starting from version 0.8, the linkerd2-cni chart from upstream is a subchart of the Giantswarm linkerd2-cni-app chart. This means that any value needs to be scoped under the `linkerd2-cni`. [Click here](https://github.com/giantswarm/linkerd2-cni-app/blob/master/helm/linkerd2-cni-app/README.md) for details.
 
 ## Credit
 
