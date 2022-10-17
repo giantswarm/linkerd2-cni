@@ -20,6 +20,3 @@ OWNERS
 .project
 .idea/
 *.tmproj
-
-tests
-linkerd-cli

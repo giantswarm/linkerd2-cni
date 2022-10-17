@@ -1,0 +1,19 @@
+apiVersion: vendir.k14s.io/v1alpha1
+kind: Config
+directories:
+- path: helm/linkerd2-cni-app/charts
+  contents:
+  - path: linkerd2-cni
+    git:
+      url: https://github.com/giantswarm/linkerd2-upstream
+      ref: giantswarm/main
+    includePaths:
+    - charts/linkerd2-cni/**/*
+    newRootPath: charts/linkerd2-cni
+  - path: partials
+    git:
+      url: https://github.com/giantswarm/linkerd2-upstream
+      ref: giantswarm/main
+    includePaths:
+    - charts/partials/**/*
+    newRootPath: charts/partials
