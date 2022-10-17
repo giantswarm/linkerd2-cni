@@ -2,16 +2,16 @@ apiVersion: vendir.k14s.io/v1alpha1
 directories:
 - contents:
   - git:
-      commitTitle: Skip downloading from choco (#9245)...
-      sha: 0bd3f732e68b9bc0345b801ca541fad36a8dd824
+      commitTitle: add resources to linkerd2-cni
+      sha: c42c42bbf205b759db1a1f477e12256ba131b384
       tags:
-      - stable-2.10.1-1943-g0bd3f732e
+      - stable-2.10.1-1948-gc42c42bbf
     path: linkerd2-cni
   - git:
-      commitTitle: Skip downloading from choco (#9245)...
-      sha: 0bd3f732e68b9bc0345b801ca541fad36a8dd824
+      commitTitle: add resources to linkerd2-cni
+      sha: c42c42bbf205b759db1a1f477e12256ba131b384
       tags:
-      - stable-2.10.1-1943-g0bd3f732e
+      - stable-2.10.1-1948-gc42c42bbf
     path: partials
   path: helm/linkerd2-cni-app/charts
 kind: LockConfig
