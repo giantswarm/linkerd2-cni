@@ -1,4 +1,4 @@
-# linkerd2-cni-app
+# linkerd2-cni
 
 Linkerd is a *service mesh*, designed to give platform-wide observability,
 reliability, and security without requiring configuration or code changes. The
@@ -6,9 +6,9 @@ Linkerd [CNI plugin](https://linkerd.io/2/features/cni/) takes care of setting
 up your pod's network so  incoming and outgoing traffic is proxied through the
 data plane.
 
-![Version: 0.7.4](https://img.shields.io/badge/Version-0.7.4-informational?style=flat-square)
+![Version: 0.7.0](https://img.shields.io/badge/Version-0.7.0-informational?style=flat-square)
 
-![AppVersion: stable-2.11.4](https://img.shields.io/badge/AppVersion-stable--2.11.4-informational?style=flat-square)
+![AppVersion: 2.11.2](https://img.shields.io/badge/AppVersion-2.11.2-informational?style=flat-square)
 
 **Homepage:** <https://github.com/giantswarm/linkerd2-cni-app>
 
@@ -18,38 +18,37 @@ Kubernetes: `>=1.17.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-|  | linkerd2-cni | 0.7.4 |
-|  | partials | 0.1.0 |
+| file://../partials | partials | 0.1.0 |
 
 ## Values
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| linkerd2-cni.cniPluginImage | string | `"giantswarm/linkerd2-cni-plugin"` | Docker image for the CNI plugin |
-| linkerd2-cni.cniPluginVersion | string | `"stable-2.11.4"` | Tag for the CNI container Docker image |
-| linkerd2-cni.destCNIBinDir | string | `"/opt/cni/bin"` | Directory on the host where the CNI configuration will be placed |
-| linkerd2-cni.destCNINetDir | string | `"/etc/cni/net.d"` | Directory on the host where the CNI plugin binaries reside |
-| linkerd2-cni.enablePSP | bool | `true` | Add a PSP resource and bind it to the linkerd-cni ServiceAccounts. Note PSP has been deprecated since k8s v1.21 |
-| linkerd2-cni.extraInitContainers | list | `[]` | Add additional initContainers to the daemonset |
-| linkerd2-cni.ignoreInboundPorts | string | `""` | Default set of inbound ports to skip via iptables |
-| linkerd2-cni.ignoreOutboundPorts | string | `""` | Default set of outbound ports to skip via iptables |
-| linkerd2-cni.image.registry | string | `"quay.io"` |  |
-| linkerd2-cni.imagePullSecrets | string | `nil` |  |
-| linkerd2-cni.inboundProxyPort | int | `4143` | Inbound port for the proxy container |
-| linkerd2-cni.installNamespace | bool | `false` | Whether to create the CNI plugin plane namespace or not |
-| linkerd2-cni.logLevel | string | `"info"` | Log level for the CNI plugin |
-| linkerd2-cni.namespace | string | `"linkerd-cni"` | CNI plugin plane namespace |
-| linkerd2-cni.outboundProxyPort | int | `4140` | Outbound port for the proxy container |
-| linkerd2-cni.portsToRedirect | string | `""` | Ports to redirect to proxy |
-| linkerd2-cni.priorityClassName | string | `""` | Kubernetes priorityClassName for the CNI plugin's Pods |
-| linkerd2-cni.proxyAdminPort | int | `4191` | Admin port for the proxy container |
-| linkerd2-cni.proxyControlPort | int | `4190` | Control port for the proxy container |
-| linkerd2-cni.proxyUID | int | `2102` | User id under which the proxy shall be ran |
-| linkerd2-cni.resources.limits.cpu | string | `"500m"` |  |
-| linkerd2-cni.resources.limits.memory | string | `"128Mi"` |  |
-| linkerd2-cni.resources.requests.cpu | string | `"50m"` |  |
-| linkerd2-cni.resources.requests.memory | string | `"64Mi"` |  |
-| linkerd2-cni.useWaitFlag | bool | `false` | Configures the CNI plugin to use the -w flag for the iptables command |
+| cniPluginImage | string | `"giantswarm/linkerd2-cni-plugin"` | Docker image for the CNI plugin |
+| cniPluginVersion | string | `"stable-2.11.2"` | Tag for the CNI container Docker image |
+| destCNIBinDir | string | `"/opt/cni/bin"` | Directory on the host where the CNI configuration will be placed |
+| destCNINetDir | string | `"/etc/cni/net.d"` | Directory on the host where the CNI plugin binaries reside |
+| enablePSP | bool | `true` | Add a PSP resource and bind it to the linkerd-cni ServiceAccounts. Note PSP has been deprecated since k8s v1.21 |
+| extraInitContainers | list | `[]` | Add additional initContainers to the daemonset |
+| ignoreInboundPorts | string | `""` | Default set of inbound ports to skip via iptables |
+| ignoreOutboundPorts | string | `""` | Default set of outbound ports to skip via iptables |
+| image.registry | string | `"quay.io"` |  |
+| imagePullSecrets | string | `nil` |  |
+| inboundProxyPort | int | `4143` | Inbound port for the proxy container |
+| installNamespace | bool | `false` | Whether to create the CNI plugin plane namespace or not |
+| logLevel | string | `"info"` | Log level for the CNI plugin |
+| namespace | string | `"linkerd-cni"` | CNI plugin plane namespace |
+| outboundProxyPort | int | `4140` | Outbound port for the proxy container |
+| portsToRedirect | string | `""` | Ports to redirect to proxy |
+| priorityClassName | string | `""` | Kubernetes priorityClassName for the CNI plugin's Pods |
+| proxyAdminPort | int | `4191` | Admin port for the proxy container |
+| proxyControlPort | int | `4190` | Control port for the proxy container |
+| proxyUID | int | `2102` | User id under which the proxy shall be ran |
+| resources.limits.cpu | string | `"500m"` |  |
+| resources.limits.memory | string | `"128Mi"` |  |
+| resources.requests.cpu | string | `"50m"` |  |
+| resources.requests.memory | string | `"64Mi"` |  |
+| useWaitFlag | bool | `false` | Configures the CNI plugin to use the -w flag for the iptables command |
 
 ----------------------------------------------
-Autogenerated from chart metadata using [helm-docs v1.11.0](https://github.com/norwoodj/helm-docs/releases/v1.11.0)
+Autogenerated from chart metadata using [helm-docs v1.4.0](https://github.com/norwoodj/helm-docs/releases/v1.4.0)
