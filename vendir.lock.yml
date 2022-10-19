@@ -1,0 +1,11 @@
+apiVersion: vendir.k14s.io/v1alpha1
+directories:
+- contents:
+  - git:
+      commitTitle: Merge tag 'refs/tags/stable-2.12.1' into giantswarm/main...
+      sha: 9da6cce3831d2886565773253a2fcb3ab2d29dfc
+      tags:
+      - stable-2.10.1-2034-g9da6cce38
+    path: linkerd
+  path: vendor
+kind: LockConfig

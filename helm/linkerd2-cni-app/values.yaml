@@ -1,7 +1,3 @@
-# -- CNI plugin plane namespace
-namespace: linkerd-cni
-# -- Whether to create the CNI plugin plane namespace or not
-installNamespace: false
 # -- Inbound port for the proxy container
 inboundProxyPort: 4143
 # -- Outbound port for the proxy container
@@ -17,7 +13,7 @@ proxyControlPort: 4190
 # -- Docker image for the CNI plugin
 cniPluginImage: "giantswarm/linkerd2-cni-plugin"
 # -- Tag for the CNI container Docker image
-cniPluginVersion: stable-2.11.4
+cniPluginVersion: stable-2.12.1
 # -- Log level for the CNI plugin
 logLevel: info
 # -- Ports to redirect to proxy
@@ -35,12 +31,20 @@ priorityClassName: ""
 
 # -- Add a PSP resource and bind it to the linkerd-cni ServiceAccounts.
 # Note PSP has been deprecated since k8s v1.21
-enablePSP: true
+enablePSP: false
+
+# -- Run the install-cni container in privileged mode
+privileged: false
 
 # -|- Tolerations section, See the
 # [K8S documentation](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/)
 # for more information
 # tolerations:
+
+# -|- NodeAffinity section, See the
+# [K8S documentation](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#node-affinity)
+# for more information
+#nodeAffinity:
 
 #
 ## For Private docker registries, authentication is needed.
