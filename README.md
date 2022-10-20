@@ -1,6 +1,6 @@
 [![CircleCI](https://circleci.com/gh/giantswarm/linkerd2-cni-app.svg?style=shield)](https://circleci.com/gh/giantswarm/linkerd2-cni-app)
 
-# linkerd2-cni-app chart
+# linkerd2-cni chart
 
 Giant Swarm offers a Linkerd2 CNI Managed App which can be installed in tenant clusters.
 Here we define the Linkerd2 CNI chart with its templates and default configuration.
@@ -26,13 +26,13 @@ If you're installing using the Web UI, you'll need to add the required labels an
 apiVersion: application.giantswarm.io/v1alpha1
 kind: App
 metadata:
-  name: linkerd2-cni-app
+  name: linkerd2-cni
   namespace: by7t2
 spec:
   catalog: giantswarm
   kubeConfig:
     inCluster: false
-  name: linkerd2-cni-app
+  name: linkerd2-cni
   namespace: linkerd-cni
   namespaceConfig:
     annotations:
@@ -49,10 +49,10 @@ You can use the `linkerd` cli as usual, just don't forget to specify the cni plu
 
 ## Maintainer info
 
-This chart is maintained using the git subtree method from
+This chart is maintained using the vendir method. You need [vendir](https://github.com/vmware-tanzu/carvel-vendir) and [yq](https://github.com/mikefarah/yq) binaries for it to work.
+
+Run `make upgrade-chart` to pull the last stable version of the chart from 
 <https://github.com/giantswarm/linkerd2-upstream>.
-Pay attention that in order to sync the chart, you need to synchronize two
-directories `helm/linkerd2-cni-app` and `helm/partials`.
 
 ## Credit
 

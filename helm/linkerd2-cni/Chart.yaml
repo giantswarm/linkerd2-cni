@@ -20,7 +20,7 @@ maintainers:
     url: https://linkerd.io/
   - name: Giant Swarm applications team
     url: https://github.com/giantswarm/linkerd2-cni-app
-name: linkerd2-cni-app
+name: linkerd2-cni
 sources:
   - https://github.com/linkerd/linkerd2
   - https://github.com/giantswarm/linkerd2-cni-app

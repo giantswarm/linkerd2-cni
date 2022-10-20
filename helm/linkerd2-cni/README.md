@@ -1,4 +1,4 @@
-# linkerd2-cni-app
+# linkerd2-cni
 
 Linkerd is a *service mesh*, designed to give platform-wide observability,
 reliability, and security without requiring configuration or code changes. The

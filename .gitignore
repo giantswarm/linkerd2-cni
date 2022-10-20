@@ -4,3 +4,4 @@ test_results_*.xml
 .pytest_cache
 linkerd-cli
 vendor
+*.kube.config

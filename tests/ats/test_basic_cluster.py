@@ -15,7 +15,7 @@ from pytest_helm_charts.giantswarm_app_platform.app import AppCR
 
 logger = logging.getLogger(__name__)
 
-app_name = "linkerd2-cni-app"
+app_name = "linkerd2-cni"
 namespace_name = "linkerd-cni"
 catalog_name = "chartmuseum"
 

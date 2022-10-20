@@ -1,6 +1,6 @@
 ##@ Chart
 
-MAIN_CHART=helm/linkerd2-cni-app
+MAIN_CHART=helm/linkerd2-cni
 VENDOR_CHART_CNI=vendor/linkerd/charts/linkerd2-cni
 VENDOR_CHART_PARTIALS=vendor/linkerd/charts/partials
 
