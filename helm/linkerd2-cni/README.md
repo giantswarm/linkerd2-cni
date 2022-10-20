@@ -16,6 +16,10 @@ data plane.
 
 Kubernetes: `>=1.21.0-0`
 
+| Repository | Name | Version |
+|------------|------|---------|
+|  | partials | 0.1.0 |
+
 ## Values
 
 | Key | Type | Default | Description |
