@@ -11,7 +11,7 @@ workflows:
           name: "package and push linkerd2-cni-app chart"
           app_catalog: "giantswarm-catalog"
           app_catalog_test: "giantswarm-test-catalog"
-          chart: "linkerd2-cni-app"
+          chart: "linkerd2-cni"
           persist_chart_archive: true
           # Trigger job on git tag.
           filters:
