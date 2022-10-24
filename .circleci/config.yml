@@ -26,5 +26,6 @@ workflows:
             branches:
               ignore:
                 - master
+                - main
           requires:
             - package and push linkerd2-cni-app chart
