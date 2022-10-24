@@ -1,6 +1,7 @@
 linkerd2-cni-app*.tgz
 linkerd2-cni-app*.tgz-meta/
-helm/linkerd2-cni-app/charts/
 test_results_*.xml
 .pytest_cache
 linkerd-cli
+vendor
+*.kube.config
