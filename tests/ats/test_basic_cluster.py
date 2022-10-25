@@ -23,7 +23,7 @@ timeout: int = 360
 
 
 def get_linkerd_cli(version):
-    url = f"https://github.com/linkerd/linkerd2/releases/download/stable-{version}/linkerd2-cli-stable-{version}-linux-amd64"
+    url = f"https://github.com/linkerd/linkerd2/releases/download/{version}/linkerd2-cli-{version}-linux-amd64"
     local_filename = "linkerd-cli"
     with requests.get(url, stream=True) as r:
         with open(local_filename, 'wb') as f:
