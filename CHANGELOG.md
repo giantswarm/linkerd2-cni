@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Changed
+
+- Bumped version 2.12.2
 - Moved partials as a subchart of linkerd2-cni-app and bumped version to 2.12.1 using vendir.
 
 ## [0.7.4] - 2022-08-25
