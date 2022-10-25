@@ -2,10 +2,10 @@ apiVersion: vendir.k14s.io/v1alpha1
 directories:
 - contents:
   - git:
-      commitTitle: add post-hook init hack
-      sha: 1ed540f22c796cd6738aa1b2933c47aebaaa7283
+      commitTitle: remove noop hack as it was introduced in upstream
+      sha: 2ad91ecf9719e27075434221ebea62189394c1a5
       tags:
-      - stable-2.10.1-2037-g1ed540f22
+      - stable-2.10.1-2139-g2ad91ecf9
     path: linkerd
   path: vendor
 kind: LockConfig
