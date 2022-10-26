@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Bumped version 2.12.2 [#87](https://github.com/giantswarm/linkerd2-cni-app/pull/87).
+- Bumped version 2.12.2 ([#87](https://github.com/giantswarm/linkerd2-cni-app/pull/87)).
 - App renamed to `linkerd2-cni`.
 - Moved partials as a subchart of linkerd2-cni-app and bumped version to 2.12.1 using vendir.
 
