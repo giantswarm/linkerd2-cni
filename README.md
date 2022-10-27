@@ -40,7 +40,7 @@ spec:
     labels:
       linkerd.io/cni-resource: "true"
       config.linkerd.io/admission-webhooks: disabled
-  version: 0.7.4
+  version: 0.8.0
 ```
 
 ## Usage with `linkerd` cli
