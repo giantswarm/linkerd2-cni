@@ -10,3 +10,13 @@ directories:
     includePaths:
     - charts/linkerd2-cni/**/*
     - charts/partials/**/*
+- path: helm/linkerd2-cni/templates
+  contents:
+  - path: .
+    directory:
+      path: vendor/linkerd/charts/linkerd2-cni/templates
+- path: helm/linkerd2-cni/charts/partials
+  contents:
+  - path: .
+    directory:
+      path: vendor/linkerd/charts/partials
