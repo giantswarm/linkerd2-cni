@@ -7,10 +7,11 @@ description: |
   up your pod's network so  incoming and outgoing traffic is proxied through the
   data plane.
 home: https://github.com/giantswarm/linkerd2-cni-app
-icon: https://s.giantswarm.io/app-icons/1/png/linkerd2-app-light.png
+icon: https://s.giantswarm.io/app-icons/linkerd2/2/icon_dark.svg
 kubeVersion: ">=1.21.0-0"
 annotations:
   application.giantswarm.io/team: team-cabbage
+  ui.giantswarm.io/logo: https://s.giantswarm.io/app-icons/linkerd2/2/logo_dark.svg
 dependencies:
   - name: partials
     version: 0.1.0
