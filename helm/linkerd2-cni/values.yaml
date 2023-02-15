@@ -27,7 +27,7 @@ destCNIBinDir: "/opt/cni/bin"
 # -- Configures the CNI plugin to use the -w flag for the iptables command
 useWaitFlag: false
 # -- Kubernetes priorityClassName for the CNI plugin's Pods
-priorityClassName: ""
+priorityClassName: "giantswarm-critical"
 
 # -- Add a PSP resource and bind it to the linkerd-cni ServiceAccounts.
 # Note PSP has been deprecated since k8s v1.21

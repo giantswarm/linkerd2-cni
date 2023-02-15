@@ -38,7 +38,7 @@ Kubernetes: `>=1.21.0-0`
 | logLevel | string | `"info"` | Log level for the CNI plugin |
 | outboundProxyPort | int | `4140` | Outbound port for the proxy container |
 | portsToRedirect | string | `""` | Ports to redirect to proxy |
-| priorityClassName | string | `""` | Kubernetes priorityClassName for the CNI plugin's Pods |
+| priorityClassName | string | `"giantswarm-critical"` | Kubernetes priorityClassName for the CNI plugin's Pods |
 | privileged | bool | `false` | Run the install-cni container in privileged mode |
 | proxyAdminPort | int | `4191` | Admin port for the proxy container |
 | proxyControlPort | int | `4190` | Control port for the proxy container |
