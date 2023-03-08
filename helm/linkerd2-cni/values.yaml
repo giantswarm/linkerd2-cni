@@ -13,7 +13,7 @@ proxyControlPort: 4190
 # -- Docker image for the CNI plugin
 cniPluginImage: "giantswarm/linkerd2-cni-plugin"
 # -- Tag for the CNI container Docker image
-cniPluginVersion: stable-2.12.2
+cniPluginVersion: stable-2.12.4
 # -- Log level for the CNI plugin
 logLevel: info
 # -- Ports to redirect to proxy
