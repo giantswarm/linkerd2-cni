@@ -2,10 +2,18 @@ apiVersion: vendir.k14s.io/v1alpha1
 directories:
 - contents:
   - git:
-      commitTitle: add securityContext to noop
-      sha: c4a67634f161db2cf15091c13d774516b47dc738
+      commitTitle: Merge tag 'refs/tags/stable-2.12.4' into upgrade-2.12.4...
+      sha: 6a3b38f5edf1aa4781ad1b60f899bba020b47b44
       tags:
-      - stable-2.10.1-2140-gc4a67634f
+      - stable-2.10.1-2189-g6a3b38f5e
     path: linkerd
   path: vendor
+- contents:
+  - directory: {}
+    path: .
+  path: helm/linkerd2-cni/templates
+- contents:
+  - directory: {}
+    path: .
+  path: helm/linkerd2-cni/charts/partials
 kind: LockConfig
