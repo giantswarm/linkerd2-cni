@@ -10,10 +10,12 @@ ignoreOutboundPorts: ""
 proxyAdminPort: 4191
 # -- Control port for the proxy container
 proxyControlPort: 4190
-# -- Docker image for the CNI plugin
-cniPluginImage: "giantswarm/linkerd2-cni-plugin"
-# -- Tag for the CNI container Docker image
-cniPluginVersion: stable-2.12.4
+# -- Additional labels to add to all pods
+podLabels: {}
+# -- Labels to apply to all resources
+commonLabels:
+  giantswarm.io/service-type: managed
+  application.giantswarm.io/team: team-cabbage
 # -- Log level for the CNI plugin
 logLevel: info
 # -- Ports to redirect to proxy
@@ -39,12 +41,25 @@ privileged: false
 # -|- Tolerations section, See the
 # [K8S documentation](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/)
 # for more information
-# tolerations:
+tolerations:
+  # -- toleration properties
+  - operator: Exists
 
 # -|- NodeAffinity section, See the
 # [K8S documentation](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#node-affinity)
 # for more information
 # nodeAffinity:
+
+# -|- Image section
+image:
+  # Required for interchangability of image registry used for China
+  registry: quay.io
+  # -- Docker image for the CNI plugin
+  name: "giantswarm/linkerd2-cni-plugin"
+  # -- Tag for the CNI container Docker image
+  version: "v1.1.1"
+  # -- Pull policy for the linkerd-cni container
+  pullPolicy: IfNotPresent
 
 #
 ## For Private docker registries, authentication is needed.
@@ -56,19 +71,16 @@ privileged: false
 #
 # The pull secrets are applied to the respective service accounts
 # which will further orchestrate the deployments.
-imagePullSecrets:
+imagePullSecrets: []
 
 resources:
-  requests:
-    memory: "64Mi"
-    cpu: "50m"
-  limits:
-    memory: "128Mi"
-    cpu: "500m"
+  cpu:
+    limit: "500m"
+    request: "50m"
+  memory:
+    limit: "128Mi"
+    request: "64Mi"
 
-## Required for interchangability of image registry used for China
-image:
-  registry: quay.io
 # -- Add additional initContainers to the daemonset
 extraInitContainers: []
 # - name: wait-for-other-cni
