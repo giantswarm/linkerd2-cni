@@ -50,6 +50,8 @@ tolerations:
 
 # -|- Image section
 image:
+  # Required for interchangability of image registry used for China
+  registry: quay.io
   # -- Docker image for the CNI plugin
   name: "giantswarm/linkerd2-cni-plugin"
   # -- Tag for the CNI container Docker image
@@ -77,9 +79,6 @@ resources:
     memory: "128Mi"
     cpu: "500m"
 
-## Required for interchangability of image registry used for China
-image:
-  registry: quay.io
 # -- Add additional initContainers to the daemonset
 extraInitContainers: []
 # - name: wait-for-other-cni
