@@ -2,11 +2,8 @@
     "$schema": "http://json-schema.org/schema#",
     "type": "object",
     "properties": {
-        "cniPluginImage": {
-            "type": "string"
-        },
-        "cniPluginVersion": {
-            "type": "string"
+        "commonLabels": {
+            "type": "object"
         },
         "destCNIBinDir": {
             "type": "string"
@@ -29,7 +26,16 @@
         "image": {
             "type": "object",
             "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "pullPolicy": {
+                    "type": "string"
+                },
                 "registry": {
+                    "type": "string"
+                },
+                "version": {
                     "type": "string"
                 }
             }
@@ -40,24 +46,23 @@
         "inboundProxyPort": {
             "type": "integer"
         },
-        "installNamespace": {
-            "type": "boolean"
-        },
         "logLevel": {
             "type": "string"
         },
-        "namespace": {
-            "type": "string",
-            "enum": ["linkerd-cni"]
-        },
         "outboundProxyPort": {
             "type": "integer"
+        },
+        "podLabels": {
+            "type": "object"
         },
         "portsToRedirect": {
             "type": "string"
         },
         "priorityClassName": {
             "type": "string"
+        },
+        "privileged": {
+            "type": "boolean"
         },
         "proxyAdminPort": {
             "type": "integer"
@@ -71,26 +76,37 @@
         "resources": {
             "type": "object",
             "properties": {
-                "limits": {
+                "cpu": {
                     "type": "object",
                     "properties": {
-                        "cpu": {
+                        "limit": {
                             "type": "string"
                         },
-                        "memory": {
+                        "request": {
                             "type": "string"
                         }
                     }
                 },
-                "requests": {
+                "memory": {
                     "type": "object",
                     "properties": {
-                        "cpu": {
+                        "limit": {
                             "type": "string"
                         },
-                        "memory": {
+                        "request": {
                             "type": "string"
                         }
+                    }
+                }
+            }
+        },
+        "tolerations": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "operator": {
+                        "type": "string"
                     }
                 }
             }
