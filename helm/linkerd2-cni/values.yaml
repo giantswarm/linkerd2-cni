@@ -13,7 +13,9 @@ proxyControlPort: 4190
 # -- Additional labels to add to all pods
 podLabels: {}
 # -- Labels to apply to all resources
-commonLabels: {}
+commonLabels:
+  giantswarm.io/service-type: managed
+  application.giantswarm.io/team: team-cabbage
 # -- Log level for the CNI plugin
 logLevel: info
 # -- Ports to redirect to proxy
