@@ -72,12 +72,12 @@ image:
 imagePullSecrets: []
 
 resources:
-  requests:
-    memory: "64Mi"
-    cpu: "50m"
-  limits:
-    memory: "128Mi"
-    cpu: "500m"
+  cpu:
+    limit: "500m"
+    request: "50m"
+  memory:
+    limit: "128Mi"
+    request: "64Mi"
 
 # -- Add additional initContainers to the daemonset
 extraInitContainers: []
