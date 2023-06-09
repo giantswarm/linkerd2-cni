@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Upgrade to linkerd 2.13.3
+- Upgrade to linkerd 2.13.4
 
 ## [0.10.0] - 2023-03-09
 

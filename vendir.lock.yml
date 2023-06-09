@@ -2,10 +2,10 @@ apiVersion: vendir.k14s.io/v1alpha1
 directories:
 - contents:
   - git:
-      commitTitle: add GS label for monitoring...
-      sha: e8450a784aae64566b0a0c05d094f50c8b102fb0
+      commitTitle: Merge branch 'release/stable-2.13' into stable-2.13.x
+      sha: f35bd7d4086dda12a3c4b4f667aa8abf3847489d
       tags:
-      - stable-2.10.1-2929-ge8450a784
+      - stable-2.10.1-2933-gf35bd7d40
     path: linkerd
   path: vendor
 - contents:
