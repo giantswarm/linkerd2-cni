@@ -2,10 +2,10 @@ apiVersion: vendir.k14s.io/v1alpha1
 directories:
 - contents:
   - git:
-      commitTitle: add GS label for monitoring...
-      sha: e8450a784aae64566b0a0c05d094f50c8b102fb0
+      commitTitle: fix network validator image...
+      sha: 45d117f776cefbcca84b3464d30ee94d9d5a4650
       tags:
-      - stable-2.10.1-2929-ge8450a784
+      - stable-2.10.1-2931-g45d117f77
     path: linkerd
   path: vendor
 - contents:
