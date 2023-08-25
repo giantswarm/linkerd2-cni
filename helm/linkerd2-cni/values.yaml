@@ -57,7 +57,7 @@ image:
   # -- Docker image for the CNI plugin
   name: "giantswarm/linkerd2-cni-plugin"
   # -- Tag for the CNI container Docker image
-  version: "v1.1.1"
+  version: "v1.2.0"
   # -- Pull policy for the linkerd-cni container
   pullPolicy: IfNotPresent
 
@@ -72,14 +72,6 @@ image:
 # The pull secrets are applied to the respective service accounts
 # which will further orchestrate the deployments.
 imagePullSecrets: []
-
-resources:
-  cpu:
-    limit: "500m"
-    request: "50m"
-  memory:
-    limit: "128Mi"
-    request: "64Mi"
 
 # -- Add additional initContainers to the daemonset
 extraInitContainers: []
@@ -97,3 +89,21 @@ extraInitContainers: []
 #   volumeMounts:
 #     - mountPath: /host/etc/cni/net.d
 #       name: cni-net-dir
+
+# -- Resource requests and limits for linkerd-cni daemonset containers
+resources:
+  cpu:
+    # -- Maximum amount of CPU units that the cni container can use
+    limit: "500m"
+    # -- Amount of CPU units that the cni container requests
+    request: "50m"
+  memory:
+    # -- Maximum amount of memory that the cni container can use
+    limit: "128Mi"
+    # -- Amount of memory that the cni container requests
+    request: "64Mi"
+  ephemeral-storage:
+    # -- Maximum amount of ephemeral storage that the cni container can use
+    limit: ""
+    # -- Amount of ephemeral storage that the cni container requests
+    request: ""
