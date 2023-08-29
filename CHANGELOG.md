@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2023-08-29
+
 ### Changed
 
 - Upgrade to linkerd 2.13.6
@@ -94,7 +96,8 @@ Skipping 0.7.1 to re-align with linkerd2-app version
 
 ## [0.1.0] - 2020-12-03
 
-[Unreleased]: https://github.com/giantswarm/linkerd2-cni-app/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/giantswarm/linkerd2-cni-app/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/giantswarm/linkerd2-cni-app/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/giantswarm/linkerd2-cni-app/compare/v0.10.0...v1.0.0
 [0.10.0]: https://github.com/giantswarm/linkerd2-cni-app/compare/v0.9.0...v0.10.0
 [0.9.0]: https://github.com/giantswarm/linkerd2-cni-app/compare/v0.8.0...v0.9.0
