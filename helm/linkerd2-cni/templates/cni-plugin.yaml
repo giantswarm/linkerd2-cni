@@ -40,7 +40,7 @@ metadata:
 imagePullSecrets:
 {{ toYaml .Values.imagePullSecrets | indent 2 }}
 {{- end }}
-{{ if .Values.enablePSP -}}
+{{ if and .Values.enablePSP (not .Values.global.podSecurityStandards.enforced) -}}
 ---
 apiVersion: policy/v1beta1
 kind: PodSecurityPolicy
