@@ -1,3 +1,4 @@
+{{- if .Values.installPolicyException }}
 apiVersion: kyverno.io/v2alpha1
 kind: PolicyException
 metadata:
@@ -37,3 +38,4 @@ spec:
         - {{ .Release.Namespace }}
         names:
         - linkerd-cni*
+{{- end }}

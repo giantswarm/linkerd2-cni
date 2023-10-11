@@ -38,6 +38,8 @@ global:
   podSecurityStandards:
     enforced: false
 
+installPolicyException: true
+
 # -- Run the install-cni container in privileged mode
 privileged: false
 
