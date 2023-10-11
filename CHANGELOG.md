@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.1] - 2023-10-11
+
 ### Changed
 
 - Upgrade ATS to 0.4.1 and its python deps.
@@ -107,7 +109,8 @@ Skipping 0.7.1 to re-align with linkerd2-app version
 
 ## [0.1.0] - 2020-12-03
 
-[Unreleased]: https://github.com/giantswarm/linkerd2-cni-app/compare/v1.2.0...HEAD
+[Unreleased]: https://github.com/giantswarm/linkerd2-cni-app/compare/v1.2.1...HEAD
+[1.2.1]: https://github.com/giantswarm/linkerd2-cni-app/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/giantswarm/linkerd2-cni-app/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/giantswarm/linkerd2-cni-app/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/giantswarm/linkerd2-cni-app/compare/v0.10.0...v1.0.0
