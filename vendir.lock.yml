@@ -3,9 +3,9 @@ directories:
 - contents:
   - git:
       commitTitle: Add PolicyException for linkerd-cni...
-      sha: bfd53380cc42c37ea6aaaa635200d7dbb0de1113
+      sha: 179740ea0b4a31933594d19509d5321320697be0
       tags:
-      - stable-2.10.1-2951-gbfd53380c
+      - stable-2.10.1-2951-g179740ea0
     path: linkerd
   path: vendor
 - contents:

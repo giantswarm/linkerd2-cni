@@ -34,6 +34,6 @@ spec:
         - DaemonSet
         - Pod
         namespaces:
-        - {{ .Release.namespace }}
+        - {{ .Release.Namespace }}
         names:
         - linkerd-cni*
