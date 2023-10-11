@@ -1,0 +1,39 @@
+apiVersion: kyverno.io/v2alpha1
+kind: PolicyException
+metadata:
+  name: linkerd-cni
+  namespace: kube-system
+  labels:
+    {{- with .Values.commonLabels }}{{ toYaml . | trim | nindent 4 }}{{- end }}
+spec:
+  exceptions:
+  - policyName: disallow-capabilities-strict
+    ruleNames:
+    - require-drop-all
+    - autogen-require-drop-all
+  - policyName: disallow-host-path
+    ruleNames:
+    - host-path
+    - autogen-host-path
+  - policyName: disallow-privilege-escalation
+    ruleNames:
+    - privilege-escalation
+    - autogen-privilege-escalation
+  - policyName: require-run-as-nonroot
+    ruleNames:
+    - run-as-non-root
+    - autogen-run-as-non-root
+  - policyName: restrict-volume-types
+    ruleNames:
+    - restricted-volumes
+    - autogen-restricted-volumes
+  match:
+    any:
+    - resources:
+        kinds:
+        - DaemonSet
+        - Pod
+        namespaces:
+        - {{ .Release.namespace }}
+        names:
+        - linkerd-cni*
