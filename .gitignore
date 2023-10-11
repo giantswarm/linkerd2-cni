@@ -1,5 +1,5 @@
-linkerd2-cni-app*.tgz
-linkerd2-cni-app*.tgz-meta/
+linkerd2-cni*.tgz
+linkerd2-cni*.tgz-meta/
 test_results_*.xml
 .pytest_cache
 linkerd-cli

@@ -6,9 +6,9 @@ Linkerd [CNI plugin](https://linkerd.io/2/features/cni/) takes care of setting
 up your pod's network so  incoming and outgoing traffic is proxied through the
 data plane.
 
-![Version: 0.10.0](https://img.shields.io/badge/Version-0.10.0-informational?style=flat-square)
+![Version: 1.2.0](https://img.shields.io/badge/Version-1.2.0-informational?style=flat-square)
 
-![AppVersion: stable-2.13.4](https://img.shields.io/badge/AppVersion-stable--2.13.4-informational?style=flat-square)
+![AppVersion: stable-2.13.6](https://img.shields.io/badge/AppVersion-stable--2.13.6-informational?style=flat-square)
 
 **Homepage:** <https://github.com/giantswarm/linkerd2-cni-app>
 
@@ -29,14 +29,16 @@ Kubernetes: `>=1.21.0-0`
 | destCNINetDir | string | `"/etc/cni/net.d"` | Directory on the host where the CNI plugin binaries reside |
 | enablePSP | bool | `true` | Add a PSP resource and bind it to the linkerd-cni ServiceAccounts. Note PSP has been deprecated since k8s v1.21 |
 | extraInitContainers | list | `[]` | Add additional initContainers to the daemonset |
+| global.podSecurityStandards.enforced | bool | `false` |  |
 | ignoreInboundPorts | string | `""` | Default set of inbound ports to skip via iptables |
 | ignoreOutboundPorts | string | `""` | Default set of outbound ports to skip via iptables |
 | image.name | string | `"giantswarm/linkerd2-cni-plugin"` | Docker image for the CNI plugin |
 | image.pullPolicy | string | `"IfNotPresent"` | Pull policy for the linkerd-cni container |
 | image.registry | string | `"quay.io"` |  |
-| image.version | string | `"v1.1.1"` | Tag for the CNI container Docker image |
+| image.version | string | `"v1.2.0"` | Tag for the CNI container Docker image |
 | imagePullSecrets | list | `[]` |  |
 | inboundProxyPort | int | `4143` | Inbound port for the proxy container |
+| installPolicyException | bool | `true` |  |
 | logLevel | string | `"info"` | Log level for the CNI plugin |
 | outboundProxyPort | int | `4140` | Outbound port for the proxy container |
 | podLabels | object | `{}` | Additional labels to add to all pods |
@@ -46,10 +48,13 @@ Kubernetes: `>=1.21.0-0`
 | proxyAdminPort | int | `4191` | Admin port for the proxy container |
 | proxyControlPort | int | `4190` | Control port for the proxy container |
 | proxyUID | int | `2102` | User id under which the proxy shall be ran |
-| resources.cpu.limit | string | `"500m"` |  |
-| resources.cpu.request | string | `"50m"` |  |
-| resources.memory.limit | string | `"128Mi"` |  |
-| resources.memory.request | string | `"64Mi"` |  |
+| resources | object | `{"cpu":{"limit":"500m","request":"50m"},"ephemeral-storage":{"limit":"","request":""},"memory":{"limit":"128Mi","request":"64Mi"}}` | Resource requests and limits for linkerd-cni daemonset containers |
+| resources.cpu.limit | string | `"500m"` | Maximum amount of CPU units that the cni container can use |
+| resources.cpu.request | string | `"50m"` | Amount of CPU units that the cni container requests |
+| resources.ephemeral-storage.limit | string | `""` | Maximum amount of ephemeral storage that the cni container can use |
+| resources.ephemeral-storage.request | string | `""` | Amount of ephemeral storage that the cni container requests |
+| resources.memory.limit | string | `"128Mi"` | Maximum amount of memory that the cni container can use |
+| resources.memory.request | string | `"64Mi"` | Amount of memory that the cni container requests |
 | tolerations[0] | object | `{"operator":"Exists"}` | toleration properties |
 | useWaitFlag | bool | `false` | Configures the CNI plugin to use the -w flag for the iptables command |
 
