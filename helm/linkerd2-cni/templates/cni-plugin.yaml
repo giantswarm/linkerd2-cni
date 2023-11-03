@@ -278,6 +278,7 @@ spec:
         {{- if .Values.resources }}
         {{- include "partials.resources" .Values.resources | nindent 8 }}
         {{- end }}
+      {{- if .Values.nodeTaint.enabled }}
       - name: node-taint
         image: "{{ .Values.image.registry }}/giantswarm/docker-kubectl:1.24.2"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
@@ -331,6 +332,7 @@ spec:
         {{- if .Values.resources }}
         {{- include "partials.resources" .Values.resources | nindent 8 }}
         {{- end }}
+      {{- end }}
       volumes:
       {{- if ne .Values.destCNIBinDir .Values.destCNINetDir }}
       - name: cni-bin-dir

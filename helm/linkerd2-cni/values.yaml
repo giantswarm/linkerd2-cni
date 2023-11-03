@@ -78,6 +78,10 @@ image:
 # which will further orchestrate the deployments.
 imagePullSecrets: []
 
+
+nodeTaint:
+  enabled: false
+
 # -- Add additional initContainers to the daemonset
 extraInitContainers: []
 # - name: wait-for-other-cni
