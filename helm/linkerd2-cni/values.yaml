@@ -48,7 +48,10 @@ privileged: false
 # for more information
 tolerations:
   # -- toleration properties
-  - operator: Exists
+  - key: node.giantswarm.io/mesh-not-ready
+    operator: Exists
+  - key: node-role.kubernetes.io/master
+    operator: Exists
 
 # -|- NodeAffinity section, See the
 # [K8S documentation](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#node-affinity)
@@ -77,7 +80,6 @@ image:
 # The pull secrets are applied to the respective service accounts
 # which will further orchestrate the deployments.
 imagePullSecrets: []
-
 
 nodeTaint:
   enabled: false
