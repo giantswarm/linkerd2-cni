@@ -52,6 +52,9 @@ tolerations:
     operator: Exists
   - key: node-role.kubernetes.io/master
     operator: Exists
+  - key: node-role.kubernetes.io/control-plane
+    operator: Exists
+
 
 # -|- NodeAffinity section, See the
 # [K8S documentation](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#node-affinity)
