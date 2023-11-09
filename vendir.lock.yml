@@ -2,10 +2,10 @@ apiVersion: vendir.k14s.io/v1alpha1
 directories:
 - contents:
   - git:
-      commitTitle: fix network validator image...
-      sha: 27f267496501557bcd78a64c6c994d623e579fbf
+      commitTitle: add nodetaint remover container...
+      sha: 05a70b5ffc1de5df36af2f4d447bad30c096dca6
       tags:
-      - stable-2.10.1-3184-g27f267496
+      - stable-2.10.1-3185-g05a70b5ff
     path: linkerd
   path: vendor
 - contents:
