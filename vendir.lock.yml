@@ -2,10 +2,10 @@ apiVersion: vendir.k14s.io/v1alpha1
 directories:
 - contents:
   - git:
-      commitTitle: Add PolicyException for linkerd-cni...
-      sha: 22ea413127fb78a148d62ff60b340bcc02b14541
+      commitTitle: fix network validator image...
+      sha: 27f267496501557bcd78a64c6c994d623e579fbf
       tags:
-      - stable-2.10.1-2951-g22ea41312
+      - stable-2.10.1-3184-g27f267496
     path: linkerd
   path: vendor
 - contents:

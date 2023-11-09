@@ -112,11 +112,6 @@ rules:
 - apiGroups: [""]
   resources: ["pods", "nodes", "namespaces", "services"]
   verbs: ["list", "get", "watch"]
-{{- if .Values.nodeTaint.enabled }}
-- apiGroups: [""]
-  resources: ["nodes"]
-  verbs: ["patch"]
-{{- end }}
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -201,10 +196,10 @@ spec:
     metadata:
       labels:
         k8s-app: linkerd-cni
+        linkerd.io/cni-resource: "true"
         {{- with .Values.podLabels }}{{ toYaml . | trim | nindent 8 }}{{- end }}
       annotations:
         {{ include "partials.annotations.created-by" . }}
-        linkerd.io/cni-resource: "true"
         linkerd.io/inject: disabled
     spec:
       {{- if .Values.tolerations }}
@@ -280,61 +275,6 @@ spec:
         {{- if .Values.resources }}
         {{- include "partials.resources" .Values.resources | nindent 8 }}
         {{- end }}
-      {{- if .Values.nodeTaint.enabled }}
-      - name: node-taint
-        image: "{{ .Values.image.registry }}/giantswarm/docker-kubectl:1.24.2"
-        imagePullPolicy: {{ .Values.image.pullPolicy }}
-        command:
-          - /bin/sh
-          - -c
-          - | 
-            while true; do 
-              # Check for taint. If it's not there, sleep for 10hs.
-              kubectl get nodes -o custom-columns=NAME:.metadata.name,TAINTS:.spec.taints --no-headers "$KUBERNETES_NODE" | grep -q node.giantswarm.io/mesh-not-ready || (echo "No taint found. Sleeping now..." && sleep 36000 && continue)
-              # If the node has a taint; check if the CNI is configured and remove the taint if true. Sleep for 10hs afterwards.
-              grep -q "linkerd-cni" /host$DEST_CNI_NET_DIR/*.conflist && kubectl taint node "$KUBERNETES_NODE" node.giantswarm.io/mesh-not-ready- && echo "Taint on $KUBERNETES_NODE removed. Sleeping now..." && sleep 36000;
-              # Safeguard
-              sleep 60
-            done
-        env:
-        - name: KUBERNETES_NODE
-          valueFrom:
-            fieldRef:
-              fieldPath: spec.nodeName
-        - name: DEST_CNI_NET_DIR
-          valueFrom:
-            configMapKeyRef:
-              name: linkerd-cni-config
-              key: dest_cni_net_dir
-        - name: DEST_CNI_BIN_DIR
-          valueFrom:
-            configMapKeyRef:
-              name: linkerd-cni-config
-              key: dest_cni_bin_dir
-        - name: CNI_NETWORK_CONFIG
-          valueFrom:
-            configMapKeyRef:
-              name: linkerd-cni-config
-              key: cni_network_config
-        volumeMounts:
-        {{- if ne .Values.destCNIBinDir .Values.destCNINetDir }}
-        - mountPath: /host{{.Values.destCNIBinDir}}
-          name: cni-bin-dir
-        - mountPath: /host{{.Values.destCNINetDir}}
-          name: cni-net-dir
-        {{- else }}
-        - mountPath: /host{{.Values.destCNINetDir}}
-          name: cni-net-dir
-        {{- end }}
-        - mountPath: /tmp
-          name: linkerd-tmp-dir
-        securityContext:
-          readOnlyRootFilesystem: true
-          privileged: {{.Values.privileged}}
-        {{- if .Values.resources }}
-        {{- include "partials.resources" .Values.resources | nindent 8 }}
-        {{- end }}
-      {{- end }}
       volumes:
       {{- if ne .Values.destCNIBinDir .Values.destCNINetDir }}
       - name: cni-bin-dir
