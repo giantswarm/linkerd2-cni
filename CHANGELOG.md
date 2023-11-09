@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Add node-taint container for taint removal.
+- Restrict tolerators to avoid scheduling on nodes with `node.cilium.io/agent-not-ready`.
+
 ## [1.2.1] - 2023-10-11
 
 ### Changed
