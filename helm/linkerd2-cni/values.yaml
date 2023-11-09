@@ -68,7 +68,7 @@ image:
   # -- Docker image for the CNI plugin
   name: "giantswarm/linkerd2-cni-plugin"
   # -- Tag for the CNI container Docker image
-  version: "v1.2.0"
+  version: "v1.2.2"
   # -- Pull policy for the linkerd-cni container
   pullPolicy: IfNotPresent
 

@@ -6,9 +6,9 @@ Linkerd [CNI plugin](https://linkerd.io/2/features/cni/) takes care of setting
 up your pod's network so  incoming and outgoing traffic is proxied through the
 data plane.
 
-![Version: 1.2.0](https://img.shields.io/badge/Version-1.2.0-informational?style=flat-square)
+![Version: 1.3.0](https://img.shields.io/badge/Version-1.3.0-informational?style=flat-square)
 
-![AppVersion: stable-2.13.6](https://img.shields.io/badge/AppVersion-stable--2.13.6-informational?style=flat-square)
+![AppVersion: stable-2.14.3](https://img.shields.io/badge/AppVersion-stable--2.14.3-informational?style=flat-square)
 
 **Homepage:** <https://github.com/giantswarm/linkerd2-cni-app>
 
@@ -35,11 +35,12 @@ Kubernetes: `>=1.21.0-0`
 | image.name | string | `"giantswarm/linkerd2-cni-plugin"` | Docker image for the CNI plugin |
 | image.pullPolicy | string | `"IfNotPresent"` | Pull policy for the linkerd-cni container |
 | image.registry | string | `"quay.io"` |  |
-| image.version | string | `"v1.2.0"` | Tag for the CNI container Docker image |
+| image.version | string | `"v1.2.2"` | Tag for the CNI container Docker image |
 | imagePullSecrets | list | `[]` |  |
 | inboundProxyPort | int | `4143` | Inbound port for the proxy container |
 | installPolicyException | bool | `true` |  |
 | logLevel | string | `"info"` | Log level for the CNI plugin |
+| nodeTaint.enabled | bool | `false` |  |
 | outboundProxyPort | int | `4140` | Outbound port for the proxy container |
 | podLabels | object | `{}` | Additional labels to add to all pods |
 | portsToRedirect | string | `""` | Ports to redirect to proxy |
@@ -55,7 +56,11 @@ Kubernetes: `>=1.21.0-0`
 | resources.ephemeral-storage.request | string | `""` | Amount of ephemeral storage that the cni container requests |
 | resources.memory.limit | string | `"128Mi"` | Maximum amount of memory that the cni container can use |
 | resources.memory.request | string | `"64Mi"` | Amount of memory that the cni container requests |
-| tolerations[0] | object | `{"operator":"Exists"}` | toleration properties |
+| tolerations[0] | object | `{"key":"node.giantswarm.io/mesh-not-ready","operator":"Exists"}` | toleration properties |
+| tolerations[1].key | string | `"node-role.kubernetes.io/master"` |  |
+| tolerations[1].operator | string | `"Exists"` |  |
+| tolerations[2].key | string | `"node-role.kubernetes.io/control-plane"` |  |
+| tolerations[2].operator | string | `"Exists"` |  |
 | useWaitFlag | bool | `false` | Configures the CNI plugin to use the -w flag for the iptables command |
 
 ----------------------------------------------
