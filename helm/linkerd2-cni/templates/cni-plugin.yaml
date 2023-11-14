@@ -201,10 +201,10 @@ spec:
     metadata:
       labels:
         k8s-app: linkerd-cni
+        linkerd.io/cni-resource: "true"
         {{- with .Values.podLabels }}{{ toYaml . | trim | nindent 8 }}{{- end }}
       annotations:
         {{ include "partials.annotations.created-by" . }}
-        linkerd.io/cni-resource: "true"
         linkerd.io/inject: disabled
     spec:
       {{- if .Values.tolerations }}
@@ -287,8 +287,8 @@ spec:
         command:
           - /bin/sh
           - -c
-          - | 
-            while true; do 
+          - |
+            while true; do
               # Check for taint. If it's not there, sleep for 10hs.
               kubectl get nodes -o custom-columns=NAME:.metadata.name,TAINTS:.spec.taints --no-headers "$KUBERNETES_NODE" | grep -q node.giantswarm.io/mesh-not-ready || (echo "No taint found. Sleeping now..." && sleep 36000 && continue)
               # If the node has a taint; check if the CNI is configured and remove the taint if true. Sleep for 10hs afterwards.

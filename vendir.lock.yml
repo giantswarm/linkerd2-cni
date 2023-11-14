@@ -2,10 +2,10 @@ apiVersion: vendir.k14s.io/v1alpha1
 directories:
 - contents:
   - git:
-      commitTitle: Add PolicyException for linkerd-cni...
-      sha: 22ea413127fb78a148d62ff60b340bcc02b14541
+      commitTitle: add nodetaint remover container...
+      sha: 05a70b5ffc1de5df36af2f4d447bad30c096dca6
       tags:
-      - stable-2.10.1-2951-g22ea41312
+      - stable-2.10.1-3185-g05a70b5ff
     path: linkerd
   path: vendor
 - contents:
