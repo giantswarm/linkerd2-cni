@@ -64,7 +64,7 @@ tolerations:
 # -|- Image section
 image:
   # Required for interchangability of image registry used for China
-  registry: quay.io
+  registry: gsoci.azurecr.io
   # -- Docker image for the CNI plugin
   name: "giantswarm/linkerd2-cni-plugin"
   # -- Tag for the CNI container Docker image
