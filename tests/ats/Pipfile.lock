@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "f714ca783b4b399d8ef598c771a3a636c3ea384b68d1a12e10dd627c21076c45"
+            "sha256": "766a771c9d5759b50d9791c26100b058736ff1f4fd313200635a716e0fc95d7f"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -174,26 +174,23 @@
                 "sha256:63f20f634bfcd83966edec32f892286f75dffb817a2c097434ecc039e558ec8f"
             ],
             "index": "pypi",
-            "markers": "python_version >= '3.8' and python_version < '4'",
             "version": "==23.6.0"
         },
         "pytest": {
             "hashes": [
-                "sha256:2cf0005922c6ace4a3e2ec8b4080eb0d9753fdc93107415332f50ce9e7994280",
-                "sha256:b090cdf5ed60bf4c45261be03239c2c1c22df034fbffe691abe93cd80cea01d8"
+                "sha256:2a8386cfc11fa9d2c50ee7b2a57e7d898ef90470a7a34c4b949ff59662bb78b7",
+                "sha256:ac978141a75948948817d360297b7aae0fcb9d6ff6bc9ec6d514b85d5a65c044"
             ],
             "index": "pypi",
-            "markers": "python_version >= '3.7'",
-            "version": "==7.4.4"
+            "version": "==8.1.1"
         },
         "pytest-helm-charts": {
             "hashes": [
-                "sha256:08dc32632c2fcffeb10f1a349ca95f49107e1230e1659279839a9cd77f0d3836",
-                "sha256:76fc21ece913aa0ad685cddd53d27280812816ea0fbda3e9783ffd2122242b37"
+                "sha256:f6baddceee2541bdee5159cccadf0c9d0e04e4a80fc946a407196593d2d844a1",
+                "sha256:f74d4ca7513f176bc4e958100371c41bec023fce0c85747f311a2f2c09741417"
             ],
             "index": "pypi",
-            "markers": "python_full_version >= '3.8.1' and python_full_version < '4.0.0'",
-            "version": "==1.1.2"
+            "version": "==1.2.0"
         },
         "pytest-rerunfailures": {
             "hashes": [
@@ -201,7 +198,6 @@
                 "sha256:4a400bcbcd3c7a4ad151ab8afac123d90eca3abe27f98725dc4d9702887d2e92"
             ],
             "index": "pypi",
-            "markers": "python_version >= '3.8'",
             "version": "==14.0"
         },
         "pyyaml": {
@@ -259,7 +255,6 @@
                 "sha256:fd66fc5d0da6d9815ba2cebeb4205f95818ff4b79c3ebe268e75d961704af52f"
             ],
             "index": "pypi",
-            "markers": "python_version >= '3.6'",
             "version": "==6.0.1"
         },
         "requests": {
@@ -268,7 +263,6 @@
                 "sha256:942c5a758f98d790eaed1a29cb6eefc7ffb0d1cf7af05c3d2791656dbd6ad1e1"
             ],
             "index": "pypi",
-            "markers": "python_version >= '3.7'",
             "version": "==2.31.0"
         },
         "tomli": {
